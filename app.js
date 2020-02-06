@@ -151,6 +151,16 @@ function handleMessage(sender_psid, received_message) {
       "text":'Hello..Min Ga Lar Par'
     }
   }
+  else if (received_message.text == "Red") {
+    response = {
+      "text":'You like red color'
+    }
+  }
+  else if (received_message.text == "Green") {
+    response = {
+      "text":'You like green color'
+    }
+  }
   else if (received_message.text == "ni hao") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API

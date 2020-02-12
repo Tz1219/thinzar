@@ -190,6 +190,11 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text":'How much gold you measure?' 
       }
+  } 
+   else if (received_message.text == "2") {
+      response = {
+        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.' 
+      }
   }  
   
   // Send the response message

@@ -448,6 +448,8 @@ function handlePostback(sender_psid, received_postback) {
       }
     }
   }
+  } else if (payload === 'o') {
+    response = { "text": "Give yor size!" }
   }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);

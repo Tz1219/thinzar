@@ -129,7 +129,7 @@ function handleMessage(sender_psid, received_message) {
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
-      "text":"မင်္ဂလာပါ! NS Doors & Windows Shop မှကြိုဆိုပါတယ်",
+      "text":"Welcome to Htun Star jewellery shop!",
       "quick_replies":[
         {
           "content_type":"text",
@@ -144,7 +144,7 @@ function handleMessage(sender_psid, received_message) {
     // s th payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
-      "text":"မင်္ဂလာပါ! NS Doors & Windows Shop မှကြိုဆိုပါတယ်"
+      "text":"Welcome to Htun Star jewellery shop!"
     }
   }
   else if (received_message.text == "Red") {

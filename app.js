@@ -377,11 +377,11 @@ function handlePostback(sender_psid, received_postback) {
           },
           {
             "title":"Welcome!",
-            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/p720x720/84114239_128691935340051_6444479401219325952_o.jpg?_nc_cat=110&_nc_ohc=UeQOG9MaKT8AX-U9GjJ&_nc_ht=scontent.fnyt1-1.fna&_nc_tp=6&oh=08d806478f9c31aee658300c2089da63&oe=5ED177E0",
+            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/86206324_119260522968834_2111653175390896128_n.jpg?_nc_cat=102&_nc_eui2=AeHrYiAcQiDV126gUfNdKhKuw9OnqHlYVCfJIFlKgKDYBS9mPQ8Hv3Ggs9nAJi3NfYAK2l3tNwhpz6Vcusw2cH2MbJCFqoWkzF-pxVWAJv7_kA&_nc_ohc=SrwG1RSl6lEAX8tle5f&_nc_ht=scontent.fnyt1-1.fna&oh=36b20f92255e2693767ffd81f080b33c&oe=5EB8DB84",
             "subtitle":"We have the right hat for everyone.",
             "default_action": {
               "type": "web_url",
-              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/p720x720/84114239_128691935340051_6444479401219325952_o.jpg?_nc_cat=110&_nc_ohc=UeQOG9MaKT8AX-U9GjJ&_nc_ht=scontent.fnyt1-1.fna&_nc_tp=6&oh=08d806478f9c31aee658300c2089da63&oe=5ED177E0",
+              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/86206324_119260522968834_2111653175390896128_n.jpg?_nc_cat=102&_nc_eui2=AeHrYiAcQiDV126gUfNdKhKuw9OnqHlYVCfJIFlKgKDYBS9mPQ8Hv3Ggs9nAJi3NfYAK2l3tNwhpz6Vcusw2cH2MbJCFqoWkzF-pxVWAJv7_kA&_nc_ohc=SrwG1RSl6lEAX8tle5f&_nc_ht=scontent.fnyt1-1.fna&oh=36b20f92255e2693767ffd81f080b33c&oe=5EB8DB84",
               "webview_height_ratio": "tall",
             },
             "buttons":[

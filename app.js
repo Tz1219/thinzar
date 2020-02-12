@@ -193,6 +193,28 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   }  
+  else if (received_message.text == "1") {
+      response = {
+        "text":'How much Gold weight you measure!' 
+      }
+  }  
+  else if (received_message.text == "2") {
+      response = {
+        "text":'your order will get at 15.2.2020 and the price will cost 300000ks',
+        "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Order",
+          "payload":"<POSTBACK_PAYLOAD>"
+        },{
+          "content_type":"text",
+          "title":"Cancle",
+          "payload":"<POSTBACK_PAYLOAD>"
+        }
+      ]
+
+      }
+  }  
   
   // Send the response message
   callSendAPI(sender_psid, response);    
@@ -448,7 +470,9 @@ function handlePostback(sender_psid, received_postback) {
       }
     }
   }
-  }
+  }else if (payload === 'o') {
+    response = { "text": "Give me your size" }
+  }else
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }

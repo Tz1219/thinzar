@@ -207,7 +207,37 @@ function handleMessage(sender_psid, received_message) {
       ]   
       }
   }  
-  
+   else if (received_message.text == "Order") {
+      response = {
+        "text":'Thanks you! Will you come to shop!',
+       "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Yes",
+          "payload":"<POSTBACK_PAYLOAD>"
+        },{
+          "content_type":"text",
+          "title":"Delivery",
+          "payload":"<POSTBACK_PAYLOAD>"
+        }
+      ]    
+      }
+  }
+   else if (received_message.text == "Cancle") {
+      response = {
+        "text":'Thanks!' 
+      }
+  }
+   else if (received_message.text == "Yes") {
+      response = {
+        "text":'Ok See You!' 
+      }
+  }
+   else if (received_message.text == "Delivery") {
+      response = {
+        "text":'Please sent your address!' 
+      }
+  }
   // Send the response message
   callSendAPI(sender_psid, response);    
 }

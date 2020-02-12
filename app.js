@@ -303,7 +303,25 @@ function handlePostback(sender_psid, received_postback) {
                 "payload":"DEVELOPER_DEFINED_PAYLOAD"
               }              
             ]      
+          },
+          {
+            "title":"Welcome!",
+            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/p720x720/86501883_119254482969438_4281528399165390848_o.jpg?_nc_cat=102&_nc_ohc=bl3MTrs5lgcAX902NJF&_nc_ht=scontent.fnyt1-1.fna&_nc_tp=6&oh=a8586f01996d33688958be88e68f10bc&oe=5EC9F2E4",
+            "subtitle":"We have the right hat for everyone.",
+            "default_action": {
+              "type": "web_url",
+              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/p720x720/86501883_119254482969438_4281528399165390848_o.jpg?_nc_cat=102&_nc_ohc=bl3MTrs5lgcAX902NJF&_nc_ht=scontent.fnyt1-1.fna&_nc_tp=6&oh=a8586f01996d33688958be88e68f10bc&oe=5EC9F2E4",
+              "webview_height_ratio": "tall",
+            },
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
+            ]      
           }
+
         ]
       }
     }
@@ -338,6 +356,23 @@ function handlePostback(sender_psid, received_postback) {
             "default_action": {
               "type": "web_url",
               "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84207792_119261499635403_3712958511102033920_n.jpg?_nc_cat=106&_nc_ohc=e2OLbkOiU6AAX8Ugela&_nc_ht=scontent.fnyt1-1.fna&oh=b6a930268d82a18a0c8a6704d6c4f6db&oe=5ED282F4",
+              "webview_height_ratio": "tall",
+            },
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
+            ]      
+          },
+          {
+            "title":"Welcome!",
+            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/86193254_119261549635398_2350947368481849344_n.jpg?_nc_cat=103&_nc_ohc=EZecxGJQhf8AX-qVqvU&_nc_ht=scontent.fnyt1-1.fna&oh=4d8b9dc926776a36ca44dc1ab440b8bb&oe=5ED1D4C9",
+            "subtitle":"We have the right hat for everyone.",
+            "default_action": {
+              "type": "web_url",
+              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/86193254_119261549635398_2350947368481849344_n.jpg?_nc_cat=103&_nc_ohc=EZecxGJQhf8AX-qVqvU&_nc_ht=scontent.fnyt1-1.fna&oh=4d8b9dc926776a36ca44dc1ab440b8bb&oe=5ED1D4C9",
               "webview_height_ratio": "tall",
             },
             "buttons":[
@@ -382,6 +417,23 @@ function handlePostback(sender_psid, received_postback) {
             "default_action": {
               "type": "web_url",
               "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/86206324_119260522968834_2111653175390896128_n.jpg?_nc_cat=102&_nc_eui2=AeHrYiAcQiDV126gUfNdKhKuw9OnqHlYVCfJIFlKgKDYBS9mPQ8Hv3Ggs9nAJi3NfYAK2l3tNwhpz6Vcusw2cH2MbJCFqoWkzF-pxVWAJv7_kA&_nc_ohc=SrwG1RSl6lEAX8tle5f&_nc_ht=scontent.fnyt1-1.fna&oh=36b20f92255e2693767ffd81f080b33c&oe=5EB8DB84",
+              "webview_height_ratio": "tall",
+            },
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"Start Chatting",
+                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+              }              
+            ]      
+          },
+          {
+            "title":"Welcome!",
+            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84625150_119260309635522_1009135426989981696_n.jpg?_nc_cat=107&_nc_ohc=Q44nbZZZMC0AX8TkKdQ&_nc_ht=scontent.fnyt1-1.fna&oh=4495a8a343249afa9c590c5fc48285f3&oe=5ECC4DAE",
+            "subtitle":"We have the right hat for everyone.",
+            "default_action": {
+              "type": "web_url",
+              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84625150_119260309635522_1009135426989981696_n.jpg?_nc_cat=107&_nc_ohc=Q44nbZZZMC0AX8TkKdQ&_nc_ht=scontent.fnyt1-1.fna&oh=4495a8a343249afa9c590c5fc48285f3&oe=5ECC4DAE",
               "webview_height_ratio": "tall",
             },
             "buttons":[

@@ -361,7 +361,7 @@ function handlePostback(sender_psid, received_postback) {
         "elements":[
            {
             "title":"Welcome!",
-            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/p720x720/84182457_128691888673389_710650163584040960_o.jpg?_nc_cat=103&_nc_ohc=GymUEW-3toAAX-KaT9R&_nc_ht=scontent.fnyt1-1.fna&_nc_tp=6&oh=a15b8d6a05e4ae0ba2885e52626b64c2&oe=5EBCFE18",
+            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-0/p640x640/84610117_119246349636918_6606558715212464128_o.jpg?_nc_cat=111&_nc_ohc=KDnateuOSWAAX8xmNUe&_nc_ht=scontent.fnyt1-1.fna&_nc_tp=6&oh=392deac173f91779a861f6d9bc44a5b2&oe=5EC86018",
             "default_action": {
               "type": "web_url",
               "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/p720x720/84182457_128691888673389_710650163584040960_o.jpg?_nc_cat=103&_nc_ohc=GymUEW-3toAAX-KaT9R&_nc_ht=scontent.fnyt1-1.fna&_nc_tp=6&oh=a15b8d6a05e4ae0ba2885e52626b64c2&oe=5EBCFE18",

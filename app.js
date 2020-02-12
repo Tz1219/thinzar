@@ -193,7 +193,18 @@ function handleMessage(sender_psid, received_message) {
   } 
    else if (received_message.text == "2") {
       response = {
-        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.' 
+        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Order",
+          "payload":"<POSTBACK_PAYLOAD>"
+        },{
+          "content_type":"text",
+          "title":"Cancle",
+          "payload":"<POSTBACK_PAYLOAD>"
+        }
+      ]   
       }
   }  
   

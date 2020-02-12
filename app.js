@@ -316,7 +316,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
+                "title":"order",
                 "payload":"DEVELOPER_DEFINED_PAYLOAD"
               }              
             ]      

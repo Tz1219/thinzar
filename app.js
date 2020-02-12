@@ -129,20 +129,10 @@ function handleMessage(sender_psid, received_message) {
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     response = {
-      "text":"မင်္ဂလာပါ! NS Doors & Windows Shop မှကြိုဆိုပါတယ်",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Red",
-          "payload":"<POSTBACK_PAYLOAD>",
-          "image_url":"http://example.com/img/red.png"
-        }
-      ]
+      "text":"မင်္ဂလာပါ! NS Doors & Windows Shop မှကြိုဆိုပါတယ်"
     }
   }
   else if (received_message.text == "Hello") {    
-    // s th payload for a basic text message, which
-    // will be added to the body of our request to the Send API
     response = {
       "text":"မင်္ဂလာပါ! NS Doors & Windows Shop မှကြိုဆိုပါတယ်"
     }
@@ -156,10 +146,8 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text":'You like green color' 
       }
-  }  
-
-  
-  } else if (received_message.attachments) {
+  }
+  else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     response = {

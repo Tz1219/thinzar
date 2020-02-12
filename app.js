@@ -282,7 +282,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -299,7 +299,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -316,7 +316,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -344,7 +344,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -361,7 +361,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -378,7 +378,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -405,7 +405,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -422,7 +422,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      
@@ -439,7 +439,7 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"order",
+                "title":"Order",
                 "payload":"o"
               }              
             ]      

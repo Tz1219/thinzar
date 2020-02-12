@@ -282,8 +282,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           },
@@ -299,8 +299,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           },
@@ -317,7 +317,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"order",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "payload":"o"
               }              
             ]      
           }
@@ -344,8 +344,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           },
@@ -361,8 +361,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           },
@@ -378,8 +378,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           }
@@ -405,8 +405,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           },
@@ -422,8 +422,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           },
@@ -439,8 +439,8 @@ function handlePostback(sender_psid, received_postback) {
             "buttons":[
               {
                 "type":"postback",
-                "title":"Start Chatting",
-                "payload":"DEVELOPER_DEFINED_PAYLOAD"
+                "title":"order",
+                "payload":"o"
               }              
             ]      
           }

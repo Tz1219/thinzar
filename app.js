@@ -146,20 +146,6 @@ function handleMessage(sender_psid, received_message) {
     ]
     }
   }
-  {
-  "recipient":{
-    "id":"<PSID>"
-  },
-  "message":{
-    "attachment":{
-      "type":"template",
-      "payload":{
-        "template_type":"<TEMPLATE_TYPE>",
-        ...
-      }
-    }
-  }
-}
   else if (received_message.text == "hello") {
     response = {
       "text":'Hello..Min Ga Lar Par'

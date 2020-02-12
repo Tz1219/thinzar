@@ -320,7 +320,7 @@ function handlePostback(sender_psid, received_postback) {
             "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84314241_119261492968737_1425301089204305920_n.jpg?_nc_cat=109&_nc_ohc=cA03G2pwyKwAX80we1d&_nc_ht=scontent.fnyt1-1.fna&oh=af66f83444a1fb6763f95534d1464767&oe=5F0047E8",
             "default_action": {
               "type": "web_url",
-              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84677204_119261509635402_1200701430931914752_n.jpg?_nc_cat=101&_nc_ohc=DPW3OwTX2D4AX_LiWV1&_nc_ht=scontent.fnyt1-1.fna&oh=588618e71aa094056f51656887158a3a&oe=5EC54ECA",
+              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84207792_119261499635403_3712958511102033920_n.jpg?_nc_cat=106&_nc_ohc=e2OLbkOiU6AAX8Ugela&_nc_ht=scontent.fnyt1-1.fna&oh=b6a930268d82a18a0c8a6704d6c4f6db&oe=5ED282F4",
               "webview_height_ratio": "tall",
             },
             "buttons":[

@@ -124,7 +124,25 @@ app.get('/webhook', (req, res) => {
 function handleMessage(sender_psid, received_message) {
   let response;
   
-  if (received_message.text == "Hello") {    
+  // Checks if the message contains text
+  if (received_message.text == "Hi") {    
+    // Create the payload for a basic text message, which
+    // will be added to the body of our request to the Send API
+    response = {
+      "text":"မင်္ဂလာပါ! NS Doors & Windows Shop မှကြိုဆိုပါတယ်",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Red",
+          "payload":"<POSTBACK_PAYLOAD>",
+          "image_url":"http://example.com/img/red.png"
+        }
+      ]
+    }
+  }
+  else if (received_message.text == "Hello") {    
+    // s th payload for a basic text message, which
+    // will be added to the body of our request to the Send API
     response = {
       "text":"မင်္ဂလာပါ! NS Doors & Windows Shop မှကြိုဆိုပါတယ်"
     }
@@ -138,8 +156,15 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text":'You like green color' 
       }
-  }
-  else if (received_message.attachments) {
+  }  
+
+   else if (received_message.text) {    
+    // Create the payload for a basic text message, which
+    // will be added to the body of our request to the Send API
+    response = {
+      "text": `You sent the message: "${received_message.text}". Now send me an attachment!`
+    }
+  } else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     response = {
@@ -167,28 +192,6 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
-  }  
-  else if (received_message.text == "1") {
-      response = {
-        "text":'How much Gold weight you measure!' 
-      }
-  }  
-  else if (received_message.text == "2") {
-      response = {
-        "text":'your order will get at 15.2.2020 and the price will cost 300000ks',
-        "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Order",
-          "payload":"<POSTBACK_PAYLOAD>"
-        },{
-          "content_type":"text",
-          "title":"Cancle",
-          "payload":"<POSTBACK_PAYLOAD>"
-        }
-      ]
-
-      }
   }  
   
   // Send the response message
@@ -445,9 +448,7 @@ function handlePostback(sender_psid, received_postback) {
       }
     }
   }
-  }else if (payload === 'o') {
-    response = { "text": "Give me your size" }
-  }else
+  }
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }

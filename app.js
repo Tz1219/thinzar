@@ -128,7 +128,7 @@ function handleMessage(sender_psid, received_message) {
   if (received_message.text == "Hi") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
-    response = {
+    let response1 = {
       "text":"Welcome to Htun Star jewellery shop!",
       "quick_replies":[
         {
@@ -139,6 +139,18 @@ function handleMessage(sender_psid, received_message) {
         }
       ]
     }
+     let response2 = {
+      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you. If you have delivered your order, please Contact us with your phone number.",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Red",
+          "payload":"<POSTBACK_PAYLOAD>",
+          "image_url":"http://example.com/img/red.png"
+        }
+      ]
+    }
+
   }
   else if (received_message.text == "Hello" || received_message.text == "hi") {    
     // s th payload for a basic text message, which
@@ -230,7 +242,7 @@ function handleMessage(sender_psid, received_message) {
   }
    else if (received_message.text == "Yes") {
       response = {
-        "text":'Ok See You!' 
+        "text":'Ok See You!No.(234), Middle Pann Soe Dann Street, Kyuak Tan Dar Township, Yangon' 
       }
   }
    else if (received_message.text == "Delivery") {

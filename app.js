@@ -130,26 +130,22 @@ function handleMessage(sender_psid, received_message) {
     // will be added to the body of our request to the Send API
     let response1 = {
       "text":"Welcome to Htun Star jewellery shop!",
-      }
-     let response2 = {
-      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you. If you have delivered your order, please contact us with your phone!"
-       }
-      callSend(sender_psid, response1).then(()=>{
+    }
+      let response2 = {
+      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you. If you have delivered your order, please contact us with your phone!",
+    }
+       callSend(sender_psid, response1).then(()=>{
       return callSend(sender_psid, response2);
         });
-  }
-
   }
   else if (received_message.text == "Hello" || received_message.text == "hi") {    
     // s th payload for a basic text message, which
     // will be added to the body of our request to the Send API
-    let response1 = {
-      "text":"Welcome to Htun Star jewellery shop!"}
-    let response2 ={
-      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you. If you have delivered your order, please contact us with your phone!"
+    response = {
+      "text":"Welcome to Htun Star jewellery shop!"
     }
   }
-   else if (received_message.attachments) {
+  else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     response = {

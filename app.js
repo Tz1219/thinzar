@@ -158,6 +158,17 @@ function handleMessage(sender_psid, received_message) {
     response = {
       "text":"Welcome to Htun Star jewellery shop!"
     }
+     let response2 = {
+      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you. If you have delivered your order, please Contact us with your phone number.",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Red",
+          "payload":"<POSTBACK_PAYLOAD>",
+          "image_url":"http://example.com/img/red.png"
+        }
+      ]
+    }
   }
   else if (received_message.text == "Red") {
       response = {

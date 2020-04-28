@@ -155,7 +155,7 @@ function handleMessage(sender_psid, received_message) {
   else if (received_message.text == "Hello" || received_message.text == "hi") {    
     // s th payload for a basic text message, which
     // will be added to the body of our request to the Send API
-    response = {
+    let response1 = {
       "text":"Welcome to Htun Star jewellery shop!"
     }
      let response2 = {

@@ -140,7 +140,7 @@ function handleMessage(sender_psid, received_message) {
     ]
   };
       let response2 = {
-      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you. If you have delivered your order, please contact us with your phone!",
+      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
        "quick_replies":[
       {
         "content_type":"text",
@@ -527,7 +527,13 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 }
-
+{ "error":{
+  "message": "An active acess token must be used to query information about the current user.",
+  "type": "OAuthException",
+  "code": 2500,
+  "fbtrace_id": "ACiOvU2dzonVtBPkbIEbAz"
+  }
+}
 
 function setupGetStartedButton(res){
         var messageData = {

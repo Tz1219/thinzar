@@ -130,10 +130,10 @@ function handleMessage(sender_psid, received_message) {
     // will be added to the body of our request to the Send API
     let response1 = {
       "text":"Welcome to Htun Star jewellery shop!",
-    }
+    };
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you. If you have delivered your order, please contact us with your phone!",
-    }
+    };
        "quick_replies":[
       {
         "content_type":"text",

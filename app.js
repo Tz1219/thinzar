@@ -527,13 +527,6 @@ function callSendAPI(sender_psid, response) {
     }
   }); 
 }
-{ "error":{
-  "message": "An active acess token must be used to query information about the current user.",
-  "type": "OAuthException",
-  "code": 2500,
-  "fbtrace_id": "ACiOvU2dzonVtBPkbIEbAz"
-  }
-}
 
 function setupGetStartedButton(res){
         var messageData = {

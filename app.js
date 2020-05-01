@@ -123,11 +123,11 @@ app.get('/webhook', (req, res) => {
 });
 
 function handleMessage(sender_psid, text) {
-  let response;
+  var response;
 
   if (text.attachments) {
     // Get the URL of the message attachment
-    let attachment_url = received_message.attachments[0].payload.url;
+    var attachment_url = received_message.attachments[0].payload.url;
     response = {
       "attachment": {
         "type": "template",
@@ -161,7 +161,7 @@ function handleMessage(sender_psid, text) {
   if (text == "Hi") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
-      let response = {
+      response = {
         "text":"Welcome to Htun Star jewellery shop!\n\n If you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thank you!",
       };
        
@@ -225,9 +225,9 @@ function handleMessage(sender_psid, text) {
 
 function handlePostback(sender_psid, received_postback) {
   console.log('ok')
-   let response;
+   var response;
   // Get the payload for the postback
-  let payload = received_postback.payload;
+  var payload = received_postback.payload;
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
@@ -491,10 +491,8 @@ function callSendAPI(sender_psid, response) {
   }
 
   // Send the HTTP request to the Messenger Platform
-  request({
+  request.post({
     "url": "https://graph.facebook.com/v6.0/me/messages?access_token="+ PAGE_ACCESS_TOKEN,
-    "method": "POST",
-    "headers": {'Content-Type': 'application/json'},
     "form": request_body
   }, (err, res, body) => {
     if (!err) {

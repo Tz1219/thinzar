@@ -60,9 +60,10 @@ app.post('/webhook', (req, res) => {
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);        
-      } else if (webhook_event.postback) {
+      }
+      if (webhook_event.postback) {
         
-        handlePostback(sender_psid, webhook_event.postback);
+        handlePostback(sender_psid, webhook_event.postback.payload);
       }
       
     });
@@ -121,47 +122,10 @@ app.get('/webhook', (req, res) => {
   }
 });
 
-function handleMessage(sender_psid, received_message) {
+function handleMessage(sender_psid, text) {
   let response;
-  
-  // Checks if the message contains text
-  if (received_message.text == "Hi") {    
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    let response1 = {
-      "text":"Welcome to Htun Star jewellery shop!",
-      "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
-      let response2 = {
-      "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
-       "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
-       callSend(sender_psid, response1).then(()=>{
-      return callSend(sender_psid, response2);
-        });
-  }
-  else if (received_message.text == "Hello" || received_message.text == "hi") {    
-    // s th payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      "text":"Welcome to Htun Star jewellery shop!"
-    }
-  }
-  else if (received_message.attachments) {
+
+  if (text.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     response = {
@@ -189,29 +153,42 @@ function handleMessage(sender_psid, received_message) {
         }
       }
     }
-  } 
-    else if (received_message.text == "1") {
+  }else if(text.text){
+    text = text.text
+  }
+  
+  // Checks if the message contains text
+  if (text == "Hi") {    
+    // Create the payload for a basic text message, which
+    // will be added to the body of our request to the Send API
+      let response = {
+        "text":"Welcome to Htun Star jewellery shop!\n\n If you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thank you!",
+      };
+       
+  }
+   
+   if (text == "1") {
       response = {
         "text":'How much gold you measure?' 
       }
   } 
-   else if (received_message.text == "2") {
+  if (text == "2") {
       response = {
         "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
       "quick_replies":[
         {
           "content_type":"text",
           "title":"Order",
-          "payload":"<POSTBACK_PAYLOAD>"
+          "payload":"Order"
         },{
           "content_type":"text",
-          "title":"Cancle",
-          "payload":"<POSTBACK_PAYLOAD>"
+          "title":"Cancel",
+          "payload":"Cancel"
         }
       ]   
       }
   }  
-   else if (received_message.text == "Order") {
+   if (text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
        "quick_replies":[
@@ -227,17 +204,17 @@ function handleMessage(sender_psid, received_message) {
       ]    
       }
   }
-   else if (received_message.text == "Cancle") {
+   if (text == "Cancel") {
       response = {
         "text":'Thanks!' 
       }
   }
-   else if (received_message.text == "Yes") {
+   if (text == "Yes") {
       response = {
         "text":'Ok See You!No.(234), Middle Pann Soe Dann Street, Kyuak Tan Dar Township, Yangon' 
       }
   }
-   else if (received_message.text == "Delivery") {
+   if (text == "Delivery") {
       response = {
         "text":'Please sent your address!' 
       }
@@ -515,7 +492,7 @@ function callSendAPI(sender_psid, response) {
 
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://graph.facebook.com/v2.6/me/messages",
+    "uri": "https://graph.facebook.com/v6.0/me/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": request_body

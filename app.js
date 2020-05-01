@@ -227,7 +227,7 @@ function handlePostback(sender_psid, received_postback) {
   console.log('ok')
    var response;
   // Get the payload for the postback
-  var payload = received_postback.payload;
+  var payload = received_postback;
 
   // Set the response based on the postback payload
   if (payload === 'yes') {

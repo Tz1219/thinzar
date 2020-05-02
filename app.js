@@ -178,12 +178,10 @@ function handleMessage(sender_psid, text) {
        
   }
    
-   if (text == "14"|| text == "16" || text == "18") {
-      response = {
-        "text":'How much gold you measure?' 
-      }
-  } 
-  if (text == "15K"|| text == "16K") {
+     
+   if (text.includes('K')){ 
+    var goleMeasure =text[0];
+     if (goldMeasure == "15"|| goldMeasure == "16") {
       response = {
         "text":'Your order price will cost 300000ks.',
       "quick_replies":[
@@ -198,9 +196,27 @@ function handleMessage(sender_psid, text) {
         }
       ]   
       }
-  } 
-  if (!isNaN(response)){var goldSiz =response;} 
-  
+     }else{
+      response = {
+        text:'Your input is not correct'
+      }
+     }
+   }
+
+ if (!isNaN(text)){
+  var goldSize =text; 
+
+     if (goldSize == "14"|| goldSize == "16" || goldSize == "18") {
+      response = {
+        "text":'How much gold you measure?' 
+      }
+  }else{
+    response ={
+      text: 'Yout input is not correct'
+    }
+  }
+}
+ 
    if (text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',

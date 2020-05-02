@@ -181,7 +181,7 @@ function handleMessage(sender_psid, text) {
      
    if (text.includes('K')){ 
     var goldSize =text[0]+text[1];
-     if (goldSize == "15K"|| goldSize == "16K") {
+     if (goldSize == "15"|| goldSize == "16") {
       response = {
         "text":'Your order price will cost 300000ks.',
       "quick_replies":[

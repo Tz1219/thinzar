@@ -27,7 +27,14 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
-  app = express().use(body_parser.json()); // creates express http server
+  app = express().use(body_parser.json()),
+  ServiceAccont=require("./ServiceAccont.json");
+
+
+  admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
+})
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -122,6 +129,7 @@ app.get('/webhook', (req, res) => {
   }
 });
 
+
 function handleMessage(sender_psid, text) {
   var response;
 
@@ -174,7 +182,7 @@ function handleMessage(sender_psid, text) {
   } 
   if (text == "2") {
       response = {
-        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
+        "text":'Your order price will cost 300000ks.',
       "quick_replies":[
         {
           "content_type":"text",

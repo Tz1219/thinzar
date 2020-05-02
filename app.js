@@ -136,7 +136,7 @@ function handleMessage(sender_psid, text) {
 
   if (text.attachments) {
     // Get the URL of the message attachment
-    var attachment_url = received_text.attachments[0].payload.url;
+    var attachment_url = text.attachments[0].payload.url;
     response = {
       "attachment": {
         "type": "template",

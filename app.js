@@ -28,11 +28,11 @@ const
   express = require('express'),
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()),
-  ServiceAccont=require("./ServiceAccont.json");
+  ServiceAccont=require("./ServiceAccount.json");
 
 
   admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(ServiceAccount),
   databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
 })
 

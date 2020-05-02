@@ -165,9 +165,11 @@ function handleMessage(sender_psid, text) {
   }else if(text.text){
     text = text.text
   }
+
+
   
   // Checks if the message contains text
-  if (text == "Hi") {    
+  if (text == "Hi"|| text == "hi" || text == "Hello" || text == "hello") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
       response = {
@@ -176,12 +178,12 @@ function handleMessage(sender_psid, text) {
        
   }
    
-   if (text == "1") {
+   if (text == "14"|| text == "16" || text == "18") {
       response = {
         "text":'How much gold you measure?' 
       }
   } 
-  if (text == "2") {
+  if (text == "15K"|| text == "16K") {
       response = {
         "text":'Your order price will cost 300000ks.',
       "quick_replies":[
@@ -196,7 +198,9 @@ function handleMessage(sender_psid, text) {
         }
       ]   
       }
-  }  
+  } 
+  if (!isNaN(response)){var goldSiz =response;} 
+  
    if (text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',

@@ -37,6 +37,28 @@ const
   databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
 })
 
+
+//firebase initialize
+firebase.initializeApp({
+  credential: firebase.credential.cert({
+    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
+    "project_id": process.env.FIREBASE_PROJECT_ID,
+  }),
+  databaseURL: "https://fir-b7a51.firebaseio.com"
+});
+
+var db = firebase.database();
+
+let ring = {
+  size:false,
+
+};
+
+
+let customerAnswer = {};
+
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -261,7 +283,17 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "text": "Give your size!" }
-  } else if (payload === 'no') {
+    ring.size = ture;
+
+  }else if (received_message.text && ring.size == true) {
+    customerAnswer.size = received_message.text;
+    response ={
+      "text":'How much gold you measure?'
+    }
+    ring.size = false;
+  }
+
+   else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }else if (payload === 'getstarted') {
     response = { "attachment": {

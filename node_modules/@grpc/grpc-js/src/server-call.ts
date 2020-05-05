@@ -20,11 +20,12 @@ import * as http2 from 'http2';
 import { Duplex, Readable, Writable } from 'stream';
 
 import { StatusObject } from './call-stream';
-import { Status } from './constants';
+import { Status, DEFAULT_MAX_SEND_MESSAGE_LENGTH, DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH } from './constants';
 import { Deserialize, Serialize } from './make-client';
 import { Metadata } from './metadata';
 import { StreamDecoder } from './stream-decoder';
 import { ObjectReadable, ObjectWritable } from './object-stream';
+import { ChannelOptions } from './channel-options';
 
 interface DeadlineUnitIndexSignature {
   [name: string]: number;
@@ -62,6 +63,7 @@ export type ServerErrorResponse = ServerStatusResponse & Error;
 
 export type ServerSurfaceCall = {
   cancelled: boolean;
+  readonly metadata: Metadata
   getPeer(): string;
   sendMetadata(responseMetadata: Metadata): void;
 } & EventEmitter;
@@ -157,7 +159,7 @@ export class ServerWritableStreamImpl<RequestType, ResponseType>
     this.trailingMetadata = new Metadata();
     this.call.setupSurfaceCall(this);
 
-    this.on('error', err => {
+    this.on('error', (err) => {
       this.call.sendError(err);
       this.end();
     });
@@ -171,14 +173,14 @@ export class ServerWritableStreamImpl<RequestType, ResponseType>
     this.call.sendMetadata(responseMetadata);
   }
 
-  async _write(
+  _write(
     chunk: ResponseType,
     encoding: string,
-    // tslint:disable-next-line:no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     callback: (...args: any[]) => void
   ) {
     try {
-      const response = await this.call.serializeMessage(chunk);
+      const response = this.call.serializeMessage(chunk);
 
       if (!this.call.write(response)) {
         this.call.once('drain', callback);
@@ -201,7 +203,7 @@ export class ServerWritableStreamImpl<RequestType, ResponseType>
     callback(null);
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   end(metadata?: any) {
     if (metadata) {
       this.trailingMetadata = metadata;
@@ -228,7 +230,7 @@ export class ServerDuplexStreamImpl<RequestType, ResponseType> extends Duplex
     this.call.setupSurfaceCall(this);
     this.call.setupReadable(this);
 
-    this.on('error', err => {
+    this.on('error', (err) => {
       this.call.sendError(err);
       this.end();
     });
@@ -338,10 +340,13 @@ export class Http2ServerCallStream<
   private isPushPending = false;
   private bufferedMessages: Array<Buffer | null> = [];
   private messagesToPush: Array<RequestType | null> = [];
+  private maxSendMessageSize: number = DEFAULT_MAX_SEND_MESSAGE_LENGTH;
+  private maxReceiveMessageSize: number = DEFAULT_MAX_RECEIVE_MESSAGE_LENGTH;
 
   constructor(
     private stream: http2.ServerHttp2Stream,
-    private handler: Handler<RequestType, ResponseType>
+    private handler: Handler<RequestType, ResponseType>,
+    private options: ChannelOptions
   ) {
     super();
 
@@ -361,6 +366,13 @@ export class Http2ServerCallStream<
     this.stream.on('drain', () => {
       this.emit('drain');
     });
+
+    if ('grpc.max_send_message_length' in options) {
+      this.maxSendMessageSize = options['grpc.max_send_message_length']!;
+    }
+    if ('grpc.max_receive_message_length' in options) {
+      this.maxReceiveMessageSize = options['grpc.max_receive_message_length']!;
+    }
   }
 
   private checkCancelled(): boolean {
@@ -435,8 +447,15 @@ export class Http2ServerCallStream<
       stream.once('end', async () => {
         try {
           const requestBytes = Buffer.concat(chunks, totalLength);
+          if (this.maxReceiveMessageSize !== -1 && requestBytes.length > this.maxReceiveMessageSize) {
+            this.sendError({
+              code: Status.RESOURCE_EXHAUSTED,
+              details: `Received message larger than max (${requestBytes.length} vs. ${this.maxReceiveMessageSize})`
+            });
+            resolve();
+          }
 
-          resolve(await this.deserializeMessage(requestBytes));
+          resolve(this.deserializeMessage(requestBytes));
         } catch (err) {
           err.code = Status.INTERNAL;
           this.sendError(err);
@@ -458,7 +477,7 @@ export class Http2ServerCallStream<
     return output;
   }
 
-  async deserializeMessage(bytes: Buffer) {
+  deserializeMessage(bytes: Buffer) {
     // TODO(cjihrig): Call compression aware deserializeMessage().
     const receivedMessage = bytes.slice(5);
 
@@ -479,7 +498,7 @@ export class Http2ServerCallStream<
     }
 
     if (err) {
-      if (!err.hasOwnProperty('metadata')) {
+      if (!Object.prototype.hasOwnProperty.call(err, 'metadata')) {
         err.metadata = metadata;
       }
       this.sendError(err);
@@ -487,7 +506,7 @@ export class Http2ServerCallStream<
     }
 
     try {
-      const response = await this.serializeMessage(value!);
+      const response = this.serializeMessage(value!);
 
       this.write(response);
       this.sendStatus({ code: Status.OK, details: 'OK', metadata });
@@ -555,6 +574,14 @@ export class Http2ServerCallStream<
       return;
     }
 
+    if (this.maxSendMessageSize !== -1 && chunk.length > this.maxSendMessageSize) {
+      this.sendError({
+        code: Status.RESOURCE_EXHAUSTED, 
+        details: `Sent message larger than max (${chunk.length} vs. ${this.maxSendMessageSize})`
+      });
+      return;
+    }
+
     this.sendMetadata();
     return this.stream.write(chunk);
   }
@@ -564,7 +591,7 @@ export class Http2ServerCallStream<
   }
 
   setupSurfaceCall(call: ServerSurfaceCall) {
-    this.once('cancelled', reason => {
+    this.once('cancelled', (reason) => {
       call.cancelled = true;
       call.emit('cancelled', reason);
     });
@@ -581,6 +608,13 @@ export class Http2ServerCallStream<
       const messages = decoder.write(data);
 
       for (const message of messages) {
+        if (this.maxReceiveMessageSize !== -1 && message.length > this.maxReceiveMessageSize) {
+          this.sendError({
+            code: Status.RESOURCE_EXHAUSTED,
+            details: `Received message larger than max (${message.length} vs. ${this.maxReceiveMessageSize})`
+          });
+          return;
+        }
         this.pushOrBufferMessage(readable, message);
       }
     });
@@ -671,7 +705,7 @@ export class Http2ServerCallStream<
   }
 }
 
-// tslint:disable:no-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 type UntypedServerCall = Http2ServerCallStream<any, any>;
 
 function handleExpiredDeadline(call: UntypedServerCall) {

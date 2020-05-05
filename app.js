@@ -38,16 +38,6 @@ const
 })
 
 
-//firebase initialize
-firebase.initializeApp({
-  credential: firebase.credential.cert({
-    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
-    "project_id": process.env.FIREBASE_PROJECT_ID,
-  }),
-  databaseURL: "https://fir-b7a51.firebaseio.com"
-});
-
 var db = firebase.database();
 
 let ring = {
@@ -200,7 +190,7 @@ function handleMessage(sender_psid, text) {
        
   }
    
-     
+   /*  
    if (text.includes('K')){ 
     var goldSize =text[0]+text[1];
      if (goldSize == "15"|| goldSize == "16") {
@@ -237,7 +227,7 @@ function handleMessage(sender_psid, text) {
       text: 'Your input is not correct'
     }
   }
-}
+}*/
  
    if (text == "Order") {
       response = {
@@ -291,6 +281,7 @@ function handlePostback(sender_psid, received_postback) {
       "text":'How much gold you measure?'
     }
     ring.size = false;
+
   }
 
    else if (payload === 'no') {

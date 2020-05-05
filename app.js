@@ -38,7 +38,7 @@ const
 })
 
 
-var db = admin.firebase();
+var db = admin.firestore();
 
 let ring = {
   size:false,

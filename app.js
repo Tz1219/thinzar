@@ -150,10 +150,9 @@ function handleMessage(sender_psid, received_message) {
       }
     ]
   };
-       callSendAPI(sender_psid, response1).then(()=>{
-      return callSendAPI(sender_psid, response2);
-        });
-  }
+     callSendAPI(sender_psid,response1);
+     callSendAPI(sender_psid,response2);
+     
   else if (received_message.text == "Hello" || received_message.text == "hi") {    
     // s th payload for a basic text message, which
     // will be added to the body of our request to the Send API

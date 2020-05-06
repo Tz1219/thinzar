@@ -29,18 +29,16 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
-  var admin = require("firebase-admin");
+   admin = require('firebase-admin'),
+  ServiceAccount=require("./ServiceAccount.json");
 
-var ServiceAccount = require("./ServiceAccount.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  admin.initializeApp({
+  credential: admin.credential.cert(ServiceAccount),
   databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
-});
-
+})
 
 var db = admin.firestore();
-
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -150,8 +148,7 @@ function handleMessage(sender_psid, received_message) {
       callSendAPI(sender_psid,response1);
       callSendAPI(sender_psid,response2);
 
-  }
-   else if (received_message.attachments) {
+  } else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     response = {

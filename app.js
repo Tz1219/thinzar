@@ -27,16 +27,15 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
-  app = express().use(body_parser.json()); // creates express http server
-
-   admin = require('firebase-admin'),
-  ServiceAccount=require("./ServiceAccount.json");
+  app = express().use(body_parser.json()); 
+  var admin = require('firebase-admin');
+  var ServiceAccount=require("./ServiceAccount.json");
 
 
   admin.initializeApp({
   credential: admin.credential.cert(ServiceAccount),
   databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
-})
+});
 
 var db = admin.firestore();
 

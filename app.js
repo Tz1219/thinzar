@@ -29,6 +29,19 @@ const
   body_parser = require('body-parser'),
   app = express().use(body_parser.json()); // creates express http server
 
+  var admin = require("firebase-admin");
+
+var ServiceAccount = require("./ServiceAccount.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
+});
+
+
+var db = admin.firestore();
+
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -125,43 +138,20 @@ function handleMessage(sender_psid, received_message) {
   let response;
   
   // Checks if the message contains text
-  if (received_message.text == "Hi") {    
+  if (received_message.text == "Hi" || received_message.text == "Hello" || received_message.text == "hi") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     let response1 = {
       "text":"Welcome to Htun Star jewellery shop!",
-      "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
+       };
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
-       "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
+      };
       callSendAPI(sender_psid,response1);
       callSendAPI(sender_psid,response2);
 
   }
-  else if (received_message.text == "Hello" || received_message.text == "hi") {    
-    // s th payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      "text":"Welcome to Htun Star jewellery shop!"
-    }
-  }
-  else if (received_message.attachments) {
+   else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
     response = {
@@ -197,7 +187,7 @@ function handleMessage(sender_psid, received_message) {
   } 
    else if (received_message.text == "2") {
       response = {
-        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
+        "text":'Your order price will cost 300000ks.',
       "quick_replies":[
         {
           "content_type":"text",

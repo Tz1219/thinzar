@@ -150,8 +150,8 @@ function handleMessage(sender_psid, received_message) {
       }
     ]
   };
-       callSend(sender_psid, response1).then(()=>{
-      return callSend(sender_psid, response2);
+       callSendAPI(sender_psid, response1).then(()=>{
+      return callSendAPI(sender_psid, response2);
         });
   }
   else if (received_message.text == "Hello" || received_message.text == "hi") {    

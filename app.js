@@ -148,13 +148,7 @@ function handleMessage(sender_psid, received_message) {
       callSendAPI(sender_psid,response2);
 
   }
-  else if (received_message.text == "Hello" || received_message.text == "hi") {    
-    // s th payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      "text":"Welcome to Htun Star jewellery shop!"
-    }
-  }
+ 
   else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;

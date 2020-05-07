@@ -39,6 +39,11 @@ const
 
 var db = admin.firestore();
 
+let ring = {
+  rsize:false,
+
+};
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -178,10 +183,11 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-    else if (received_message.text == "1") {
+    else if (received_message.text == "14" || "16" || "18") {
       response = {
         "text":'How much gold you measure?' 
       }
+ ring.rsize =true;
   } 
    else if (received_message.text == "2") {
       response = {
@@ -243,6 +249,17 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "text": "Give your size!" }
+      ring.size = ture;
+
+  }else if (received_message.text && ring.size == true) {
+    customerAnswer.size = received_message.text;
+    response ={
+      "text":'How much gold you measure?'
+    }
+    ring.size = false;
+
+  }
+
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }else if (payload === 'getstarted') {

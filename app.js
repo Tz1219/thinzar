@@ -39,10 +39,13 @@ const
 
 var db = admin.firestore();
 
-let ring = {
+let questions = {
   rsize:false,
+  nsize:false,
 
 };
+
+let customerAnswer ={};
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -183,12 +186,18 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-    else if (received_message.text == "14" || "16" || "18") {
+    else if (received_message.text == "8" || received_message.text == "9" || received_message.text == "10") {
       response = {
         "text":'How much gold you measure?' 
       }
- ring.rsize =true;
+ questions.rsize =true;
+  } else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
+      response = {
+        "text":'How much gold you measure?' 
+      }
+ questions.nsize =true;
   } 
+
    else if (received_message.text == "2") {
       response = {
         "text":'Your order price will cost 300000ks.',
@@ -249,14 +258,17 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "text": "Give your size!" }
-      ring.size = ture;
+      questions.rsize = true;
+      questions.nsize = true;
 
-  }else if (received_message.text && ring.size == true) {
-    customerAnswer.size = received_message.text;
+  }else if (received_message.text && questions.rsize == true || received_message.text && questions.nsize == true  ) {
+    customerAnswer.rsize = received_message.text;
+    customerAnswer.nsize = received_message.text;
     response ={
       "text":'How much gold you measure?'
     }
-    ring.size = false;
+    questions.size = false;
+    questions.nsize =false;
 
   }
 

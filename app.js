@@ -142,26 +142,10 @@ function handleMessage(sender_psid, received_message) {
     // will be added to the body of our request to the Send API
     let response1 = {
       "text":"Welcome to Htun Star jewellery shop!",
-      "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
+      };
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
-       "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
+    };
        callSend(sender_psid, response1).then(()=>{
       return callSend(sender_psid, response2);
         });
@@ -202,27 +186,43 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-    else if (received_message.text == "1") {
+   if (text.includes('K')){ 
+    var goldSize =text[0]+text[1];
+     if (goldSize == "15"|| goldSize == "16") {
       response = {
-        "text":'How much gold you measure?' 
-      }
-  } 
-   else if (received_message.text == "2") {
-      response = {
-        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
+        "text":'Your order price will cost 300000ks.',
       "quick_replies":[
         {
           "content_type":"text",
           "title":"Order",
-          "payload":"<POSTBACK_PAYLOAD>"
+          "payload":"Order"
         },{
           "content_type":"text",
-          "title":"Cancle",
-          "payload":"<POSTBACK_PAYLOAD>"
+          "title":"Cancel",
+          "payload":"Cancel"
         }
       ]   
       }
-  }  
+     }else{
+      response = {
+        text:'Your input is not correct'
+      }
+     }
+   }
+
+ if (!isNaN(text)){
+  var goldSize =text; 
+
+     if (goldSize == "14"|| goldSize == "16" || goldSize == "18") {
+      response = {
+        "text":'How much gold you weight?(eg.15K , 16K )' 
+      }
+  }else{
+    response ={
+      text: 'Your input is not correct'
+    }
+  }
+}  
    else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
@@ -266,7 +266,7 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Give your size!" }
+    response = { "text": "Give your size!(e.g 14,16,18)"}
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }else if (payload === 'getstarted') {

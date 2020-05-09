@@ -39,11 +39,7 @@ const
 
 var db = admin.firestore();
 
-let questions = {
-  rsize:false,
-  nsize:false,
 
-};
 
 let customerAnswer ={};
 
@@ -138,6 +134,8 @@ app.get('/webhook', (req, res) => {
     }
   }
 });
+
+
 
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -259,17 +257,14 @@ function handlePostback(sender_psid, received_postback) {
   if (payload === 'yes') {
     response = { "text": "Give your size!" }
       questions.rsize = true;
-      questions.nsize = true;
-
-  }else if (received_message.text && questions.rsize == true || received_message.text && questions.nsize == true  ) {
+     
+  }else if (received_message.text && questions.rsize == true ) {
     customerAnswer.rsize = received_message.text;
-    customerAnswer.nsize = received_message.text;
-    response ={
+       response ={
       "text":'How much gold you measure?'
     }
     questions.size = false;
-    questions.nsize =false;
-
+   
   }
 
   } else if (payload === 'no') {

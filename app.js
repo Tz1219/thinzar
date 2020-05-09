@@ -27,21 +27,7 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
-  app = express().use(body_parser.json()); 
-  var admin = require('firebase-admin');
-  var ServiceAccount=require("./ServiceAccount.json");
-
-
-  admin.initializeApp({
-  credential: admin.credential.cert(ServiceAccount),
-  databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
-});
-
-var db = admin.firestore();
-
-
-
-let customerAnswer ={};
+  app = express().use(body_parser.json()); // creates express http server
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -135,26 +121,46 @@ app.get('/webhook', (req, res) => {
   }
 });
 
-
-
 function handleMessage(sender_psid, received_message) {
   let response;
   
   // Checks if the message contains text
-  if (received_message.text == "Hi" || received_message.text == "Hello" || received_message.text == "hi") {    
+  if (received_message.text == "Hi") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     let response1 = {
       "text":"Welcome to Htun Star jewellery shop!",
-       };
+      "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Red",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://example.com/img/red.png"
+      }
+    ]
+  };
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
-      };
-      callSendAPI(sender_psid,response1);
-      callSendAPI(sender_psid,response2);
-
+       "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Red",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://example.com/img/red.png"
+      }
+    ]
+  };
+       callSend(sender_psid, response1).then(()=>{
+      return callSend(sender_psid, response2);
+        });
   }
- 
+  else if (received_message.text == "Hello" || received_message.text == "hi") {    
+    // s th payload for a basic text message, which
+    // will be added to the body of our request to the Send API
+    response = {
+      "text":"Welcome to Htun Star jewellery shop!"
+    }
+  }
   else if (received_message.attachments) {
     // Get the URL of the message attachment
     let attachment_url = received_message.attachments[0].payload.url;
@@ -184,14 +190,14 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-    else if (received_message.text == "8") {
+    else if (received_message.text == "1") {
       response = {
         "text":'How much gold you measure?' 
       }
-  }
+  } 
    else if (received_message.text == "2") {
       response = {
-        "text":'Your order price will cost 300000ks.',
+        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
       "quick_replies":[
         {
           "content_type":"text",
@@ -249,17 +255,6 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "text": "Give your size!" }
-      questions.rsize = true;
-     
-  }else if (received_message.text && questions.rsize == true ) {
-    customerAnswer.rsize = received_message.text;
-       response ={
-      "text":'How much gold you measure?'
-    }
-    questions.size = false;
-   
-  }
-
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }else if (payload === 'getstarted') {

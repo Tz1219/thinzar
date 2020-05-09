@@ -137,7 +137,7 @@ function handleMessage(sender_psid, received_message) {
   let response;
   
   // Checks if the message contains text
-  if (received_message.text == "Hi") {    
+  if (received_message.text == "Hi" || received_message.text == "Hello" || received_message.text == "hi") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     let response1 = {
@@ -148,13 +148,6 @@ function handleMessage(sender_psid, received_message) {
    };
        callSendAPI(sender_psid, response1);
        callSendAPI(sender_psid, response2);
-  }
-  else if (received_message.text == "Hello" || received_message.text == "hi") {    
-    // s th payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      "text":"Welcome to Htun Star jewellery shop!"
-    }
   }
   else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -186,12 +179,12 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
-  else if (received_message.text == "14") {
+  else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
       response = {
-        "text":'How much gold you measure?' 
+        "text":'How much gold you measure?(e.g - 15K ,16K )' 
       }
   } 
-   else if (received_message.text == "15K") {
+   else if (received_message.text == "15K" || received_message.text == "16K") {
       response = {
         "text":'Your order price will cost 300000ks.',
       "quick_replies":[

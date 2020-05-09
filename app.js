@@ -184,18 +184,11 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-    else if (received_message.text == "8" || received_message.text == "9" || received_message.text == "10") {
+    else if (received_message.text == "8") {
       response = {
         "text":'How much gold you measure?' 
       }
- questions.rsize =true;
-  } else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
-      response = {
-        "text":'How much gold you measure?' 
-      }
- questions.nsize =true;
-  } 
-
+  }
    else if (received_message.text == "2") {
       response = {
         "text":'Your order price will cost 300000ks.',

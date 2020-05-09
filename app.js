@@ -179,43 +179,28 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-   if (text.includes('K')){ 
-    var goldWeight =text[0]+text[1];
-     if (goldWeight == "15"|| goldWeight == "16") {
+  
+  else if (received_message.text == "14") {
+      response = {
+        "text":'How much gold you measure?' 
+      }
+  } 
+   else if (received_message.text == "15K") {
       response = {
         "text":'Your order price will cost 300000ks.',
       "quick_replies":[
         {
           "content_type":"text",
           "title":"Order",
-          "payload":"Order"
+          "payload":"<POSTBACK_PAYLOAD>"
         },{
           "content_type":"text",
-          "title":"Cancel",
-          "payload":"Cancel"
+          "title":"Cancle",
+          "payload":"<POSTBACK_PAYLOAD>"
         }
       ]   
       }
-     }else{
-      response = {
-        text:'Your input is not correct'
-      }
-     }
-   }
-
- if (!isNaN(text)){
-  var goldSize =text; 
-
-     if (goldSize == "14"|| goldSize == "16" || goldSize == "18") {
-      response = {
-        "text":'How much gold you weight?(eg.15K , 16K )' 
-      }
-  }else{
-    response ={
-      text: 'Your input is not correct'
-    }
-  }
-}  
+  } 
    else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',

@@ -137,7 +137,7 @@ function handleMessage(sender_psid, received_message) {
   let response;
   
   // Checks if the message contains text
-  if (text == "Hi"|| text == "hi" || text == "Hello" || text == "hello")  {    
+  if (received_message.text == "Hi"|| received_message.text == "hi" || received_message.text == "Hello" || received_message.text == "hello")  {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     let response1 = {

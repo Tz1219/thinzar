@@ -27,7 +27,19 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
-  app = express().use(body_parser.json()); // creates express http server
+  app = express().use(body_parser.json()),
+  admin = require('firebase-admin'),
+  ServiceAccount=require("./ServiceAccount.json");
+
+
+  admin.initializeApp({
+  credential: admin.credential.cert(ServiceAccount),
+  databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
+})
+
+
+var db = admin.firestore();
+
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));

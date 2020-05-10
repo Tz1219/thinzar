@@ -40,6 +40,11 @@ const
 
 var db = admin.firestore();
 
+let reqQuestion = {
+  rsize : false;
+  weight : false;
+}:
+let customerAns = {};
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -179,9 +184,9 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
-  else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
+ /*else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
       response = {
-        "text":'How much gold you measure?(e.g - 15K ,16K )' 
+        "text":'How much gold you weight?(e.g - 15K ,16K )' 
       }
   } 
    else if (received_message.text == "15K" || received_message.text == "16K") {
@@ -199,7 +204,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ]   
       }
-  } 
+  }*/ 
    else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
@@ -382,7 +387,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o"
+                "payload":"o1"
               }              
             ]      
           },
@@ -399,7 +404,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o"
+                "payload":"o1"
               }              
             ]      
           },
@@ -416,7 +421,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o"
+                "payload":"o1"
               }              
             ]      
           }
@@ -443,7 +448,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o"
+                "payload":"o2"
               }              
             ]      
           },
@@ -460,7 +465,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o"
+                "payload":"o2"
               }              
             ]      
           },
@@ -477,7 +482,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o"
+                "payload":"o2"
               }              
             ]      
           }
@@ -486,8 +491,38 @@ function handlePostback(sender_psid, received_postback) {
     }
   }
   } else if (payload === 'o') {
-    response = { "text": "Give your size!(e.g 14,16,18)" }
+    response = { "text": "Give your size!(e.g - setp by finger with cm)" }
+    reqQuestion.rsize = true;
+  } 
+  else if (received_message.text && reqQuestion.rsize == true){
+    customerAns.rsize = received_message.text;
+    response = {"text": "4 cm" }
+    reqQuestion.rsize = false;
+    reqQuestion.weight =true;
   }
+  else if (received_message.text && reqQuestion.weight == true){
+    reqQuestion.weight = received_message.text;
+    response = {"text": 'Your order price will cost 3000000.',}
+    "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Order",
+          "payload":"<POSTBACK_PAYLOAD>"
+        },{
+          "content_type":"text",
+          "title":"Cancle",
+          "payload":"<POSTBACK_PAYLOAD>"
+        }
+      ]   
+  }
+  reqQuestion.weight =false;
+
+   /*else if (payload === 'o1') {
+    response = { "text": "Give your size!(e.g - setp by with cm)" }
+  }
+   else if (payload === 'o2') {
+    response = { "text": "Give your size!(e.g - setp by hand with cm)" }
+  }*/
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
 }

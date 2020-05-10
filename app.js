@@ -519,8 +519,8 @@ function handlePostback(sender_psid, received_postback) {
     }
     reqQuestion.weight = false;
   }
-    callSendAPI(sender_psid, response);
-}
+    callSendAPI(sender_psid, response);}
+
 
   
 function callSendAPI(sender_psid, response) {

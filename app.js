@@ -43,7 +43,7 @@ var db = admin.firestore();
 let reqQuestion = {
   rsize : false,
   weight : false,
-}:
+};
 let customerAns = {};
 
 // Sets server port and logs message on success

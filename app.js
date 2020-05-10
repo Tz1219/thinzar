@@ -42,6 +42,7 @@ var db = admin.firestore();
 
 let reqQuestion = {
   rsize : false;
+  weight : false;
 }:
 let customerAns = {};
 
@@ -522,11 +523,6 @@ function handlePostback(sender_psid, received_postback) {
 }
 
   
-
- 
-
-
-
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {

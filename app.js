@@ -41,8 +41,8 @@ const
 var db = admin.firestore();
 
 let reqQuestion = {
-  rsize : false;
-  weight : false;
+  rsize : false,
+  weight : false,
 }:
 let customerAns = {};
 

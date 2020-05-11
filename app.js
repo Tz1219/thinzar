@@ -505,20 +505,7 @@ function handlePostback(sender_psid, received_postback) {
   else if (received_message.text && reqQuestion.weight == true){
     reqQuestion.weight == true;
     customerAns.weight == received_message.text;
-    response ={ "text": 'Your order price will cost 300000.',
-      "quick_replies":[
-      {
-        "content_type": "text",
-        "title":"Order",
-        "payload":"<POSTBACK_PAYLOAD>"
-      },
-      {
-        "content_type": "text",
-        "title":"Cancle",
-        "payload":"<POSTBACK_PAYLOAD>"
-      }
-      ]
-    }
+    response ={ "text": 'Your order price will cost 300000.', }
     reqQuestion.weight = false;
   }
     callSendAPI(sender_psid, response);}

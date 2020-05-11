@@ -188,25 +188,10 @@ function handleMessage(sender_psid, received_message) {
   
   else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
-        "text":'How much gold you weight?(e.g - 15K ,16K )' 
+        "text":'How much gold you weight?' 
       }
   } 
-   else if (received_message.text == "15K" || received_message.text == "16K") {
-      response = {
-        "text":'Your order price will cost 300000ks.',
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Order",
-          "payload":"<POSTBACK_PAYLOAD>"
-        },{
-          "content_type":"text",
-          "title":"Cancle",
-          "payload":"<POSTBACK_PAYLOAD>"
-        }
-      ]   
-      }
-  } 
+/*
    else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
@@ -222,7 +207,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ]    
       }
-  }
+  }*/
    else if (received_message.text == "Cancle") {
       response = {
         "text":'Thanks!' 

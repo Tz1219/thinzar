@@ -40,11 +40,7 @@ const
 
 var db = admin.firestore();
 
-let reqQuestion = {
-  rsize : false,
-  weight : false,
-};
-let customerAns = {};
+
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -137,6 +133,12 @@ app.get('/webhook', (req, res) => {
     }
   }
 });
+
+let reqQuestion = {
+  rsize : false,
+  weight : false,
+};
+let customerAns = {};
 
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -496,7 +498,7 @@ function handlePostback(sender_psid, received_postback) {
   } 
   else if (received_message.text && reqQuestion.rsize == true){
     customerAns.rsize = received_message.text;
-    response = {"text": "4 cm" }
+    response = {"text": "How much gold your weight?" }
     reqQuestion.rsize = false;
     reqQuestion.weight =true;
   }

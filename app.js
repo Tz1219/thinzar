@@ -186,7 +186,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
-  else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
+  else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
         "text":'How much gold you weight?(e.g - 15K ,16K )' 
       }

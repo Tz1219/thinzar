@@ -43,10 +43,6 @@ var db = admin.firestore();
 let reqQuestion = {
   rsize : false,
   weight : false,
-  esize : false,
-  eweight : false,
-  nsize : false,
-  nweight :false,
 };
 let customerAns = {};
 
@@ -497,7 +493,7 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === 'o') {
     response = { "text": "Give your size!(e.g - setp by finger with cm)" }
     reqQuestion.rsize = true;
-  } ek
+  } 
   else if (received_message.text && reqQuestion.rsize == true){
     customerAns.rsize = received_message.text;
     response = {"text": "How much gold weight?" }
@@ -522,62 +518,7 @@ function handlePostback(sender_psid, received_postback) {
       }
     reqQuestion.weight = false;
   }
-  else if (payload === 'o1') {
-    response = { "text": "Give your size!(e.g - Define the desired length in cm)" }
-    reqQuestion.esize = true;
-  } 
-  else if (received_message.text && reqQuestion.esize == true){
-    customerAns.rsize = received_message.text;
-    response = {"text": "How much gold weight?" }
-    reqQuestion.esize = false;
-    reqQuestion.eweight =true;
-  }
-  else if (received_message.text && reqQuestion.eweight == true){
-    reqQuestion.eweight == true;
-    customerAns.eweight == received_message.text;
-    response ={ "text": 'Your order price will cost 300000.',
-      "quick_replies":[
-      {
-        "content_type": "text",
-        "title":"Order",
-        "payload":"<POSTBACK_PAYLOAD>"
-      },
-      {
-        "content_type": "text",
-        "title":"Cancle",
-        "payload":"<POSTBACK_PAYLOAD>"
-      ]
-      }
-    reqQuestion.weight = false;
-  }
-  else if (payload === 'o2') {
-    response = { "text": "Give your size!(e.g - Define the desired length in cm)" }
-    reqQuestion.nsize = true;
-  } 
-  else if (received_message.text && reqQuestion.nsize == true){
-    customerAns.nsize = received_message.text;
-    response = {"text": "How much gold weight?" }
-    reqQuestion.nsize = false;
-    reqQuestion.nweight =true;
-  }
-  else if (received_message.text && reqQuestion.nweight == true){
-    reqQuestion.nweight == true;
-    customerAns.nweight == received_message.text;
-    response ={ "text": 'Your order price will cost 300000.',
-      "quick_replies":[
-      {
-        "content_type": "text",
-        "title":"Order",
-        "payload":"<POSTBACK_PAYLOAD>"
-      },
-      {
-        "content_type": "text",
-        "title":"Cancle",
-        "payload":"<POSTBACK_PAYLOAD>"
-      ]
-      }
-    reqQuestion.weight = false;
-  }
+  
     callSendAPI(sender_psid, response);
 
     }

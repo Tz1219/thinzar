@@ -185,22 +185,7 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-  else if (payload === 'o') {
-    response = { "text": "Give your size!(e.g - setp by finger with cm)" }
-    reqQuestion.rsize = true;
-  } 
-  else if (received_message.text && reqQuestion.rsize == true){
-    customerAns.rsize = received_message.text;
-    response = {"text": "How much gold your weight?" }
-    reqQuestion.rsize = false;
-    reqQuestion.weight =true;
-  }
-  else if (received_message.text && reqQuestion.weight == true){
-    customerAns.weight == received_message.text;
-    response ={ "text": 'Your order price will cost 300000.', }
-    reqQuestion.weight = false;
-  }
-
+  
   /*else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
       response = {
         "text":'How much gold you weight?(e.g - 15K ,16K )' 
@@ -507,7 +492,21 @@ function handlePostback(sender_psid, received_postback) {
       }
     }
   }
+  } else if (payload === 'o') {
+    response = { "text": "Give your size!(e.g - setp by finger with cm)" }
+    reqQuestion.rsize = true;
   } 
+  else if (received_message.text && reqQuestion.rsize == true){
+    customerAns.rsize = received_message.text;
+    response = {"text": "How much gold your weight?" }
+    reqQuestion.rsize = false;
+    reqQuestion.weight =true;
+  }
+  else if (received_message.text && reqQuestion.weight == true){
+    customerAns.weight == received_message.text;
+    response ={ "text": 'Your order price will cost 300000.', }
+    reqQuestion.weight = false;
+  }
     callSendAPI(sender_psid, response);}
 
 

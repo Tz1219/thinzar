@@ -186,7 +186,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
-  /*else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
+  else if (received_message.text == "14" || received_message.text == "16" || received_message.text == "18") {
       response = {
         "text":'How much gold you weight?(e.g - 15K ,16K )' 
       }
@@ -206,7 +206,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ]   
       }
-  } */
+  } 
    else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
@@ -504,7 +504,20 @@ function handlePostback(sender_psid, received_postback) {
   }
   else if (received_message.text && reqQuestion.weight == true){
     customerAns.weight == received_message.text;
-    response ={ "text": 'Your order price will cost 300000.', }
+    response ={ "text": 'Your order price will cost 300000.',
+      "quick_replies":[
+      {
+        "content_type": "text",
+        "title":"Order",
+        "payload":"<POSTBACK_PAYLOAD>"
+      },
+      {
+        "content_type": "text",
+        "title":"Cancle",
+        "payload":"<POSTBACK_PAYLOAD>"
+      }
+      ]
+    }
     reqQuestion.weight = false;
   }
     callSendAPI(sender_psid, response);}

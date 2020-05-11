@@ -496,7 +496,7 @@ function handlePostback(sender_psid, received_postback) {
   } 
   else if (received_message.text && reqQuestion.rsize == true){
     customerAns.rsize = received_message.text;
-    response = {"text": "How much gold weight?" }
+    response = {"text": "4 cm" }
     reqQuestion.rsize = false;
     reqQuestion.weight =true;
   }
@@ -514,14 +514,13 @@ function handlePostback(sender_psid, received_postback) {
         "content_type": "text",
         "title":"Cancle",
         "payload":"<POSTBACK_PAYLOAD>"
-      ]
       }
+      ]
+    }
     reqQuestion.weight = false;
   }
-  
-    callSendAPI(sender_psid, response);
+    callSendAPI(sender_psid, response);}
 
-    }
 
   
 function callSendAPI(sender_psid, response) {

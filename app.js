@@ -185,7 +185,7 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-  else if (received_message.text === 'Order') {
+  else if (payload === 'o') {
     response = { "text": "Give your size!(e.g - setp by finger with cm)" }
     reqQuestion.rsize = true;
   } 
@@ -222,7 +222,7 @@ function handleMessage(sender_psid, received_message) {
       ]   
       }
   } */
-  /* else if (received_message.text == "Order") {
+   else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
        "quick_replies":[
@@ -237,7 +237,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ]    
       }
-  }*/
+  }
    else if (received_message.text == "Cancle") {
       response = {
         "text":'Thanks!' 

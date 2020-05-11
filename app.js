@@ -196,7 +196,6 @@ function handleMessage(sender_psid, received_message) {
     reqQuestion.weight =true;
   }
   else if (received_message.text && reqQuestion.weight == true){
-    reqQuestion.weight == true;
     customerAns.weight == received_message.text;
     response ={ "text": 'Your order price will cost 300000.', }
     reqQuestion.weight = false;

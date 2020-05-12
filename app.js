@@ -186,42 +186,26 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
-  if (text.includes('K')){ 
-    var goldSize =text[0]+text[1];
-     if (goldSize == "15"|| goldSize == "16") {
+  else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
-        "text":'Your order price will cost 300000ks.',
+        "text":'How much gold you weight?' 
+      }
+  } else if (received_message.text == "15 K" || ) {
+      response = {
+        "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
       "quick_replies":[
         {
           "content_type":"text",
           "title":"Order",
-          "payload":"Order"
+          "payload":"<POSTBACK_PAYLOAD>"
         },{
           "content_type":"text",
-          "title":"Cancel",
-          "payload":"Cancel"
+          "title":"Cancle",
+          "payload":"<POSTBACK_PAYLOAD>"
         }
       ]   
       }
-     }else{
-      response = {
-        text:'Your input is not correct'
-      }
-     }
-   }
-
- if (text.includes("cm")){
-  var goldSize =text[0]+text[1];
-     if (goldSize == "4"|| goldSize == "6" || goldSize == "8") {
-      response = {
-        "text":'How much gold you measure?(plese choose gold measure.)' 
-      }
-  }else{
-    response ={
-      text: 'Your input is not correct'
-    }
-  }
-}
+  }  
 
 /*
    else if (received_message.text == "Order") {

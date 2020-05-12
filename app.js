@@ -135,7 +135,7 @@ app.get('/webhook', (req, res) => {
 });
 
 let reqQuestion = {
-  rsize : false,
+  size : false,
   weight : false,
 };
 let customerAns = {};
@@ -374,7 +374,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o1"
+                "payload":"o"
               }              
             ]      
           },
@@ -391,7 +391,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o1"
+                "payload":"o"
               }              
             ]      
           },
@@ -408,7 +408,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o1"
+                "payload":"o"
               }              
             ]      
           }
@@ -435,7 +435,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o2"
+                "payload":"o"
               }              
             ]      
           },
@@ -452,7 +452,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o2"
+                "payload":"o"
               }              
             ]      
           },
@@ -469,7 +469,7 @@ function handlePostback(sender_psid, received_postback) {
               {
                 "type":"postback",
                 "title":"Order",
-                "payload":"o2"
+                "payload":"o"
               }              
             ]      
           }
@@ -478,13 +478,13 @@ function handlePostback(sender_psid, received_postback) {
     }
   }
   } else if (payload === 'o') {
-    response = { "text": "Give your size!(e.g - setp by finger with cm)" }
-    reqQuestion.rsize = true;
+    response = { "text": "Give your size!(e.g - Show cm as you want.)" }
+    reqQuestion.size = true;
   } 
-  else if (received_message.text && reqQuestion.rsize == true){
-    customerAns.rsize = received_message.text;
+  else if (received_message.text && reqQuestion.size == true){
+    customerAns.size = received_message.text;
     response = {"text": "How much gold your weight?" }
-    reqQuestion.rsize = false;
+    reqQuestion.size = false;
     reqQuestion.weight =true;
   }
   else if (received_message.text && reqQuestion.weight == true){

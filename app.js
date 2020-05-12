@@ -190,7 +190,7 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text":'How much gold you weight?' 
       }
-  } else if (received_message.text == "15 K" || ) {
+  } else if (received_message.text == "15 K") {
       response = {
         "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
       "quick_replies":[
@@ -206,6 +206,7 @@ function handleMessage(sender_psid, received_message) {
       ]   
       }
   }  
+
 
    else if (received_message.text == "Order") {
       response = {

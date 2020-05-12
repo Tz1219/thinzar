@@ -207,7 +207,7 @@ function handleMessage(sender_psid, received_message) {
       }
   }  
 
-
+/*
    else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
@@ -223,7 +223,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ]    
       }
-  }
+  }*/
    else if (received_message.text == "Cancle") {
       response = {
         "text":'Thanks!' 

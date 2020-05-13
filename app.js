@@ -215,7 +215,9 @@ function handleMessage(sender_psid, received_message) {
     reqQuestion.weight =true;
   }
   else if (received_message.text && reqQuestion.weight == true){
-    customerAns.weight == received_message.text;
+    customerAns.weight = received_message.text;
+    var size =parselnt (customerAns.weight);
+    price = size * weight;
     response ={ "text": 'You will receice your order within a week and price will cost 500000.',
       "quick_replies":[
       {

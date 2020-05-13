@@ -210,7 +210,7 @@ function handleMessage(sender_psid, received_message) {
   }  */
   else if (received_message.text && reqQuestion.size == true){
     customerAns.size = received_message.text;
-    response = {"text": "How much gold your weight?" }
+    response = {"text": "Gold price is 75000 gold at 16K. How much gold your weight?"  }
     reqQuestion.size = false;
     reqQuestion.weight =true;
   }
@@ -218,8 +218,7 @@ function handleMessage(sender_psid, received_message) {
     customerAns.weight = received_message.text;
     var weight = parselnt (customerAns.weight);
     var size = parselnt (customerAns.size);
-    
-    price = size*weight;
+    price = size * weight;
     response ={ "text": 'You will receice your order within a week and price will cost .' + price,
       "quick_replies":[
       {

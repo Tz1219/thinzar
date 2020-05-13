@@ -42,12 +42,7 @@ const
 
   let db = firebase.firestore();
 
-  
-let reqQuestion = {
-  size : false,
-  weight : false,
-};
-let customerAns = {};
+
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -145,7 +140,7 @@ let reqQuestion = {
   size : false,
   weight : false,
 };
-let customerAns = {};
+let Customer = {};
 
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -193,12 +188,12 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
- /* else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
+/* else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
-        "text":'How much gold you weight?' 
+        "text":'How much gold you weight? (e.g - )' 
       }
       reqQuestion.size =
-  } else if (received_message.text == "15 K") {
+  } else if (received_message.text == "") {
       response = {
         "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
       "quick_replies":[
@@ -213,8 +208,8 @@ function handleMessage(sender_psid, received_message) {
         }
       ]   
       }
-  } */ 
-
+  } 
+*/
  else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
@@ -501,7 +496,23 @@ function handlePostback(sender_psid, received_postback) {
     }
   }
   } else if (payload === 'o') {
-    response = { "text": "Give your size!(e.g - Show cm as you want.)" }
+    response = { "text": "Give your size!(e.g - Show cm as you want.)" 
+   "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"4 cm",
+        "payload":"<POSTBACK_PAYLOAD>",
+      },{
+        "content_type":"text",
+        "title":"6 cm",
+        "payload":"<POSTBACK_PAYLOAD>",
+      },{
+        "content_type":"text",
+        "title":"8 cm",
+        "payload":"<POSTBACK_PAYLOAD>",
+      }
+    ]
+  }
     reqQuestion.size = true;
   } 
   else if (received_message.text && reqQuestion.size == true){

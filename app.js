@@ -270,6 +270,9 @@ function handleMessage(sender_psid, received_message) {
     customerAns.address = received_message.text;
     response = {"text": "Thanks!"  }
     reqQuestion.address = false;
+  } else if (received_message.text === 'd') {
+    response = {"text":'Please sent your address!',}
+    reqQuestion.address = true;
   }
    
   // Send the response message
@@ -529,9 +532,6 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === 'o') {
     response = { "text": "Give your size!(e.g - Show cm as you want.)", }
     reqQuestion.size = true;
-  } else if (payload === 'd') {
-    response = {"text":'Please sent your address!',}
-    reqQuestion.address = true;
   }
       callSendAPI(sender_psid, response);}
 

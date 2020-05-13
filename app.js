@@ -216,7 +216,7 @@ function handleMessage(sender_psid, received_message) {
   }
   else if (received_message.text && reqQuestion.weight == true){
     customerAns.weight == received_message.text;
-    response ={ "text": 'Your order price will cost 300000.',
+    response ={ "text": 'You will receice your order within a week and price will cost 300000.',
       "quick_replies":[
       {
         "content_type": "text",

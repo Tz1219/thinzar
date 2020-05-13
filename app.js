@@ -138,8 +138,10 @@ app.get('/webhook', (req, res) => {
 let reqQuestion = {
   size : false,
   weight : false,
+  address : false,
 };
 let customerAns = {};
+
 
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -249,7 +251,7 @@ function handleMessage(sender_psid, received_message) {
         },{
           "content_type":"text",
           "title":"Delivery",
-          "payload":"<POSTBACK_PAYLOAD>"
+          "payload":"d"
         }
       ]    
       }
@@ -268,6 +270,7 @@ function handleMessage(sender_psid, received_message) {
       response = {
         "text":'Please sent your address!' 
       }
+
   }
   // Send the response message
   callSendAPI(sender_psid, response);    
@@ -526,7 +529,10 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === 'o') {
     response = { "text": "Give your size!(e.g - Show cm as you want.)", }
     reqQuestion.size = true;
-  } 
+  } else if (payload === "d") {
+    response = { "text": "Thanks!",}
+    reqQuestion.address = true;
+  }
       callSendAPI(sender_psid, response);}
 
 

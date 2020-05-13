@@ -218,7 +218,7 @@ function handleMessage(sender_psid, received_message) {
     customerAns.weight = received_message.text;
     var size =parselnt (customerAns.weight);
     price = size * weight;
-    response ={ "text": 'You will receice your order within a week and price will cost 500000.',
+    response ={ "text": 'You will receice your order within a week and price will cost .' + price ,
       "quick_replies":[
       {
         "content_type": "text",

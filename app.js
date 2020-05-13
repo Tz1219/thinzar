@@ -187,6 +187,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
+
  /* else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
         "text":'How much gold you weight?' 
@@ -207,6 +208,31 @@ function handleMessage(sender_psid, received_message) {
       ]   
       }
   }  */
+  else if (received_message.text && reqQuestion.size == true){
+    customerAns.size = received_message.text;
+    response = {"text": "How much gold your weight?" }
+    reqQuestion.size = false;
+    reqQuestion.weight =true;
+  }
+  else if (received_message.text && reqQuestion.weight == true){
+    customerAns.weight == received_message.text;
+    response ={ "text": 'Your order price will cost 300000.',
+      "quick_replies":[
+      {
+        "content_type": "text",
+        "title":"Order",
+        "payload":"<POSTBACK_PAYLOAD>"
+      },
+      {
+        "content_type": "text",
+        "title":"Cancle",
+        "payload":"<POSTBACK_PAYLOAD>"
+      }
+      ]
+    }
+    reqQuestion.weight = false;
+  }
+
 
  else if (received_message.text == "Order") {
       response = {
@@ -497,31 +523,7 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Give your size!(e.g - Show cm as you want.)", }
     reqQuestion.size = true;
   } 
-  else if (received_message.text && reqQuestion.size == true){
-    customerAns.size = received_message.text;
-    response = {"text": "How much gold your weight?" }
-    reqQuestion.size = false;
-    reqQuestion.weight =true;
-  }
-  else if (received_message.text && reqQuestion.weight == true){
-    customerAns.weight == received_message.text;
-    response ={ "text": 'Your order price will cost 300000.',
-      "quick_replies":[
-      {
-        "content_type": "text",
-        "title":"Order",
-        "payload":"<POSTBACK_PAYLOAD>"
-      },
-      {
-        "content_type": "text",
-        "title":"Cancle",
-        "payload":"<POSTBACK_PAYLOAD>"
-      }
-      ]
-    }
-    reqQuestion.weight = false;
-  }
-    callSendAPI(sender_psid, response);}
+      callSendAPI(sender_psid, response);}
 
 
   

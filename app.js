@@ -251,7 +251,7 @@ function handleMessage(sender_psid, received_message) {
         },{
           "content_type":"text",
           "title":"Delivery",
-          "payload":"d",
+          "payload":"<POSTBACK_PAYLOAD>",
         }
       ]    
       }
@@ -270,7 +270,7 @@ function handleMessage(sender_psid, received_message) {
     customerAns.address = received_message.text;
     response = {"text": "Thanks!"  }
     reqQuestion.address = false;
-  } else if (received_message.text === 'd') {
+  } else if (received_message.text === 'delivery') {
     response = {"text":'Please sent your address!',}
     reqQuestion.address = true;
   }

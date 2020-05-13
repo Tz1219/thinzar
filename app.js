@@ -251,7 +251,7 @@ function handleMessage(sender_psid, received_message) {
         },{
           "content_type":"text",
           "title":"Delivery",
-          "payload":"d"
+          "payload":"d",
         }
       ]    
       }
@@ -529,7 +529,7 @@ function handlePostback(sender_psid, received_postback) {
   } else if (payload === 'o') {
     response = { "text": "Give your size!(e.g - Show cm as you want.)", }
     reqQuestion.size = true;
-  } else if (payload === "d") {
+  } else if (payload === 'd') {
     response = {"text":'Please sent your address!',}
     reqQuestion.address = true;
   }

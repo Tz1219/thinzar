@@ -266,12 +266,12 @@ function handleMessage(sender_psid, received_message) {
         "text":'Ok See You!No.(234), Middle Pann Soe Dann Street, Kyuak Tan Dar Township, Yangon' 
       }
   }
-   else if (received_message.text == "Delivery") {
-      response = {
-        "text":'Please sent your address!' 
-      }
-
+  else if (received_message.text && reqQuestion.address == true){
+    customerAns.address = received_message.text;
+    response = {"text": "Thanks!"  }
+    reqQuestion.address = false;
   }
+   
   // Send the response message
   callSendAPI(sender_psid, response);    
 }
@@ -530,7 +530,7 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Give your size!(e.g - Show cm as you want.)", }
     reqQuestion.size = true;
   } else if (payload === "d") {
-    response = { "text": "Thanks!",}
+    response = {"text":'Please sent your address!',}
     reqQuestion.address = true;
   }
       callSendAPI(sender_psid, response);}

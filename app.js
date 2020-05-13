@@ -188,7 +188,7 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
-/* else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
+ else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
         "text":'How much gold you weight? (e.g - )' 
       }
@@ -209,7 +209,7 @@ function handleMessage(sender_psid, received_message) {
       ]   
       }
   } 
-*/
+
  else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
@@ -497,21 +497,6 @@ function handlePostback(sender_psid, received_postback) {
   }
   } else if (payload === 'o') {
     response = { "text": "Give your size!(e.g - Show cm as you want.)" 
-   "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"4 cm",
-        "payload":"<POSTBACK_PAYLOAD>",
-      },{
-        "content_type":"text",
-        "title":"6 cm",
-        "payload":"<POSTBACK_PAYLOAD>",
-      },{
-        "content_type":"text",
-        "title":"8 cm",
-        "payload":"<POSTBACK_PAYLOAD>",
-      }
-    ]
   }
     reqQuestion.size = true;
   } 

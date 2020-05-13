@@ -270,7 +270,7 @@ function handleMessage(sender_psid, received_message) {
     customerAns.address = received_message.text;
     response = {"text": "Thanks!"  }
     reqQuestion.address = false;
-  } else if (received_message.text === 'delivery') {
+  } else if (received_message.text === 'Delivery') {
     response = {"text":'Please sent your address!',}
     reqQuestion.address = true;
   }

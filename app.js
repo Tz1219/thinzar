@@ -27,20 +27,19 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
-  firebase = require('firebase-admin'),
-  app = express().use(body_parser.json()); // creates express http server
+  app = express().use(body_parser.json()),
+  admin = require('firebase-admin'),
+  ServiceAccount=require("./ServiceAccount.json");
 
-  //initialize firebase
-  firebase.initializeApp({
-  credential: firebase.credential.cert({
-    "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
-    "client_email": process.env.FIREBASE_CLIENT_EMAIL,
-    "project_id": process.env.FIREBASE_PROJECT_ID,
-  }),
+
+  admin.initializeApp({
+  credential: admin.credential.cert(ServiceAccount),
   databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
-  });
+})
 
-  let db = firebase.firestore();
+
+var db = admin.firestore();
+
 
 
 
@@ -140,7 +139,7 @@ let reqQuestion = {
   size : false,
   weight : false,
 };
-let Customer = {};
+let customerAns = {};
 
 function handleMessage(sender_psid, received_message) {
   let response;
@@ -188,12 +187,11 @@ function handleMessage(sender_psid, received_message) {
     }
   } 
   
- /*else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
+ /* else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
-        "text":'How much gold you weight? (e.g - )' 
+        "text":'How much gold you weight?' 
       }
-      reqQuestion.size =
-  } else if (received_message.text == "") {
+  } else if (received_message.text == "15 K") {
       response = {
         "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
       "quick_replies":[
@@ -208,7 +206,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ]   
       }
-  } */
+  }  */
 
  else if (received_message.text == "Order") {
       response = {
@@ -496,8 +494,7 @@ function handlePostback(sender_psid, received_postback) {
     }
   }
   } else if (payload === 'o') {
-    response = { "text": 'Give your size!(e.g - Show cm as you want.)',
-  }
+    response = { "text": "Give your size!(e.g - Show cm as you want.)", }
     reqQuestion.size = true;
   } 
   else if (received_message.text && reqQuestion.size == true){
@@ -659,4 +656,4 @@ function removePersistentMenu(res){
                 res.send(body);
             }
         });
-    } 
+    }

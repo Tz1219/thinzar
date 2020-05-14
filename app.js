@@ -231,7 +231,7 @@ function handleMessage(sender_psid, received_message) {
       },
       {
         "content_type": "text",
-        "title":"Cancle",
+        "title":"Cancel",
         "payload":"<POSTBACK_PAYLOAD>"
       }
       ]
@@ -256,7 +256,7 @@ function handleMessage(sender_psid, received_message) {
       ]    
       }
   }
-   else if (received_message.text == "Cancle") {
+   else if (received_message.text == "Cancel") {
       response = {
         "text":'Thanks!' 
       }

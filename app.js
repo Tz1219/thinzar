@@ -422,10 +422,10 @@ function handlePostback(sender_psid, received_postback) {
         "elements":[
            {
             "title":"Welcome!",
-            "image_url":"https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84314241_119261492968737_1425301089204305920_n.jpg?_nc_cat=109&_nc_ohc=cA03G2pwyKwAX80we1d&_nc_ht=scontent.fnyt1-1.fna&oh=af66f83444a1fb6763f95534d1464767&oe=5F0047E8",
+            "image_url":"https://scontent.fnyt2-1.fna.fbcdn.net/v/t1.0-0/p350x350/84314241_119261492968737_1425301089204305920_n.jpg?_nc_cat=109&ccb=2&_nc_sid=730e14&_nc_ohc=crYz-xxsRMQAX__YmbN&_nc_ht=scontent.fnyt2-1.fna&tp=6&oh=1468f8ed6a3f93cfe8eec5535ca5d1dc&oe=5FBE9BCD",
             "default_action": {
               "type": "web_url",
-              "url": "https://scontent.fnyt1-1.fna.fbcdn.net/v/t1.0-9/84314241_119261492968737_1425301089204305920_n.jpg?_nc_cat=109&_nc_ohc=cA03G2pwyKwAX80we1d&_nc_ht=scontent.fnyt1-1.fna&oh=af66f83444a1fb6763f95534d1464767&oe=5F0047E8",
+              "url": "https://scontent.fnyt2-1.fna.fbcdn.net/v/t1.0-0/p350x350/84314241_119261492968737_1425301089204305920_n.jpg?_nc_cat=109&ccb=2&_nc_sid=730e14&_nc_ohc=crYz-xxsRMQAX__YmbN&_nc_ht=scontent.fnyt2-1.fna&tp=6&oh=1468f8ed6a3f93cfe8eec5535ca5d1dc&oe=5FBE9BCD",
               "webview_height_ratio": "tall",
             },
             "buttons":[

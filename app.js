@@ -268,9 +268,9 @@ function handleMessage(sender_psid, received_message) {
   }
   else if (received_message.text && reqQuestion.address == true){
     let gold ={
-      size:customerAns.size,
-      weight:customerAns.weight,
-      address:customerAns.address
+      size:reqQuestion.size,
+      weight:reqQuestion.weight,
+      address:reqQuestion.address
     }
     db.collection('thin').doc().set(gold);
     customerAns.address = received_message.text;

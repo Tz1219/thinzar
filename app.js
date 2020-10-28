@@ -213,7 +213,7 @@ function handleMessage(sender_psid, received_message) {
   else if (received_message.text && reqQuestion.size == true){
     customerAns.size = received_message.text;
     response = {"text": "Gold price is 150000 gold at 16K. How much gold your weight?"  }
-    reqQuestion.size = false;
+    reqQuestion.size !== false;
     reqQuestion.weight =true;
   }
   else if (received_message.text && reqQuestion.weight == true){
@@ -236,7 +236,7 @@ function handleMessage(sender_psid, received_message) {
       }
       ]
     }
-    reqQuestion.weight = false;
+    reqQuestion.weight !== false;
   }
 
 
@@ -275,7 +275,7 @@ function handleMessage(sender_psid, received_message) {
     db.collection('thin').doc().set(gold);
     customerAns.address = received_message.text;
     response = {"text": "Thanks!"  }
-    reqQuestion.address = false;
+    reqQuestion.address !== false;
   } else if (received_message.text === 'Delivery') {
     response = {"text":'Please sent your address!',}
     reqQuestion.address = true;

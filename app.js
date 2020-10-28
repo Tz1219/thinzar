@@ -27,7 +27,21 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
-  app = express().use(body_parser.json()); // creates express http server
+  app = express().use(body_parser.json()),
+  admin = require('firebase-admin'),
+  ServiceAccount=require("./ServiceAccount.json");
+
+
+  admin.initializeApp({
+  credential: admin.credential.cert(ServiceAccount),
+  databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
+})
+
+
+var db = admin.firestore();
+
+
+
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -121,45 +135,30 @@ app.get('/webhook', (req, res) => {
   }
 });
 
+let reqQuestion = {
+  size : false,
+  weight : false,
+  address : false,
+  name : false,
+};
+let customerAns = {};
+
+
 function handleMessage(sender_psid, received_message) {
   let response;
   
   // Checks if the message contains text
-  if (received_message.text == "Hi") {    
+  if (received_message.text == "Hi" || received_message.text == "Hello" || received_message.text == "hi") {    
     // Create the payload for a basic text message, which
     // will be added to the body of our request to the Send API
     let response1 = {
       "text":"Welcome to Htun Star jewellery shop!",
-      "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
+   };
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
-       "quick_replies":[
-      {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
-      }
-    ]
-  };
-       callSend(sender_psid, response1).then(()=>{
-      return callSend(sender_psid, response2);
-        });
-  }
-  else if (received_message.text == "Hello" || received_message.text == "hi") {    
-    // s th payload for a basic text message, which
-    // will be added to the body of our request to the Send API
-    response = {
-      "text":"Welcome to Htun Star jewellery shop!"
-    }
+   };
+       callSendAPI(sender_psid, response1);
+       callSendAPI(sender_psid, response2);
   }
   else if (received_message.attachments) {
     // Get the URL of the message attachment
@@ -190,12 +189,13 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-    else if (received_message.text == "1") {
+  
+
+ /* else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
-        "text":'How much gold you measure?' 
+        "text":'How much gold you weight?' 
       }
-  } 
-   else if (received_message.text == "2") {
+  } else if (received_message.text == "15 K") {
       response = {
         "text":'Your order will get 15.2.2020 and the price will cost 300000ks.',
       "quick_replies":[
@@ -210,8 +210,38 @@ function handleMessage(sender_psid, received_message) {
         }
       ]   
       }
-  }  
-   else if (received_message.text == "Order") {
+  }  */
+  else if (received_message.text && reqQuestion.size == true){
+    customerAns.size = received_message.text;
+    response = {"text": "Gold price is 150000 gold at 16K. How much gold your weight?"  }
+    reqQuestion.size = false;
+    reqQuestion.weight =true;
+  }
+  else if (received_message.text && reqQuestion.weight == true){
+    customerAns.weight = received_message.text;
+    var weight = parseInt (customerAns.weight);
+    var size = parseInt (customerAns.size);
+    var price = 150000 * size * weight;
+
+    response ={ "text": 'You will receice your order within a week and price will cost .' + price,
+      "quick_replies":[
+      {
+        "content_type": "text",
+        "title":"Order",
+        "payload":"<POSTBACK_PAYLOAD>"
+      },
+      {
+        "content_type": "text",
+        "title":"Cancel",
+        "payload":"<POSTBACK_PAYLOAD>"
+      }
+      ]
+    }
+    reqQuestion.weight = false;
+  }
+
+
+ else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
        "quick_replies":[
@@ -222,12 +252,12 @@ function handleMessage(sender_psid, received_message) {
         },{
           "content_type":"text",
           "title":"Delivery",
-          "payload":"<POSTBACK_PAYLOAD>"
+          "payload":"<POSTBACK_PAYLOAD>",
         }
       ]    
       }
   }
-   else if (received_message.text == "Cancle") {
+   else if (received_message.text == "Cancel") {
       response = {
         "text":'Thanks!' 
       }
@@ -237,11 +267,21 @@ function handleMessage(sender_psid, received_message) {
         "text":'Ok See You!No.(234), Middle Pann Soe Dann Street, Kyuak Tan Dar Township, Yangon' 
       }
   }
-   else if (received_message.text == "Delivery") {
-      response = {
-        "text":'Please sent your address!' 
-      }
+  else if (received_message.text && reqQuestion.address == true){
+    let gold ={
+      size:reqQuestion.size,
+      weight:reqQuestion.weight,
+      address:reqQuestion.address
+    }
+    db.collection('thin').doc().set(gold);
+    customerAns.address = received_message.text;
+    response = {"text": "Thanks!"  }
+    reqQuestion.address = false;
+  } else if (received_message.text === 'Delivery') {
+    response = {"text":'Please sent your address!',}
+    reqQuestion.address = true;
   }
+   
   // Send the response message
   callSendAPI(sender_psid, response);    
 }
@@ -254,7 +294,7 @@ function handlePostback(sender_psid, received_postback) {
 
   // Set the response based on the postback payload
   if (payload === 'yes') {
-    response = { "text": "Give your size!" }
+    response = { "text": "Give your size!"}
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }else if (payload === 'getstarted') {
@@ -497,13 +537,13 @@ function handlePostback(sender_psid, received_postback) {
     }
   }
   } else if (payload === 'o') {
-    response = { "text": "Give your size!" }
+    response = { "text": "Give your size!(e.g - Show cm as you want.)", }
+    reqQuestion.size = true;
   }
-  // Send the message to acknowledge the postback
-  callSendAPI(sender_psid, response);
-}
+      callSendAPI(sender_psid, response);}
 
 
+  
 function callSendAPI(sender_psid, response) {
   // Construct the message body
   let request_body = {
@@ -635,4 +675,4 @@ function removePersistentMenu(res){
                 res.send(body);
             }
         });
-    } 
+    }

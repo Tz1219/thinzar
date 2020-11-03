@@ -90,6 +90,9 @@ app.post('/webhook', (req, res) => {
 
 });
 
+app.get('/',function(req,res){
+    console.log(1);    
+});
 
 app.get('/setgsbutton',function(req,res){
     setupGetStartedButton(res);    

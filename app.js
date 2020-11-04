@@ -292,6 +292,7 @@ function handlePostback(sender_psid, received_postback) {
   // Set the response based on the postback payload
   if (payload === 'yes') {
     response = { "text": "Give your size!"}
+    reqQuestion.size = true;
   } else if (payload === 'no') {
     response = { "text": "Oops, try sending another image." }
   }else if (payload === 'getstarted') {

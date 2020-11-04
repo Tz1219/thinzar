@@ -181,7 +181,7 @@ function handleMessage(sender_psid, received_message) {
                     }]
                   }
                 }
-              };
+              }
        callSendAPI(sender_psid, response1);
        callSendAPI(sender_psid, response2);
        callSendAPI(sender_psid, response3);

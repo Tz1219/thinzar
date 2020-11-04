@@ -127,6 +127,7 @@ let reqQuestion = {
   size : false,
   weight : false,
   address : false,
+  name : false,
 };
 let customerAns = {};
 
@@ -268,7 +269,12 @@ function handleMessage(sender_psid, received_message) {
     let gold ={
       size:customerAns.size,
       weight:customerAns.weight,
+<<<<<<< HEAD
+      address:received_message.text,
+      name:received_message.text
+=======
       address:received_message.text
+>>>>>>> 44ca3f3eae6f873a110a7e95511ae3ae8ce15144
     }
     console.log(77777, gold, customerAns)
     db.collection('thin').doc().set(gold);
@@ -278,6 +284,13 @@ function handleMessage(sender_psid, received_message) {
   } else if (received_message.text === 'Delivery') {
     response = {"text":'Please sent your address!',}
     reqQuestion.address = true;
+  }
+  else if (received_message.text && reqQuestion.name == true){
+    customerAns.name = received_message.text;
+    response = {"text": "Please sent your name"  }
+    reqQuestion.name = false;
+    console.log(999999)
+    console.log(received_message.text)
   }
    
   // Send the response message

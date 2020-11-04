@@ -127,6 +127,7 @@ let reqQuestion = {
   size : false,
   weight : false,
   address : false,
+  name : false,
 };
 let customerAns = {};
 

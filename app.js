@@ -159,8 +159,32 @@ function handleMessage(sender_psid, received_message) {
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
    };
+       let response3 = { "attachment": {
+                  "type": "template",
+                  "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                      "title": "Welcome!",
+                      "subtitle": "Which type of jewellery design?",
+                      "buttons": [
+                        {
+                          "type": "postback",
+                          "title": "In shop!",
+                          "payload": "is",
+                        },
+                        {
+                          "type": "postback",
+                          "title": "Uploade design.",
+                          "payload": "ud",
+                        }
+                      ],
+                    }]
+                  }
+                }
+              };
        callSendAPI(sender_psid, response1);
        callSendAPI(sender_psid, response2);
+       callSendAPI(sender_psid, response3);
   }
   else if (received_message.attachments) {
     // Get the URL of the message attachment

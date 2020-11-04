@@ -228,7 +228,7 @@ function handleMessage(sender_psid, received_message) {
     var size = parseInt (customerAns.size);
     var price = 150000 * size * weight;
     console.log(333333)
-    console.log(received_message.text)
+    console.log(customerAns)
     response ={ "text": 'You will receice your order within a week and price will cost .' + price,
       "quick_replies":[
       {
@@ -281,6 +281,7 @@ function handleMessage(sender_psid, received_message) {
       weight:reqQuestion.weight,
       address:reqQuestion.address
     }
+    console.log(77777, gold)
     db.collection('thin').doc().set(gold);
     customerAns.address = received_message.text;
     response = {"text": "Thanks!"  }

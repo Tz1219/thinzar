@@ -159,7 +159,7 @@ function handleMessage(sender_psid, received_message) {
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
    };
-  console.log(1111111)
+
        callSendAPI(sender_psid, response1);
        callSendAPI(sender_psid, response2);
   }
@@ -219,14 +219,14 @@ function handleMessage(sender_psid, received_message) {
     response = {"text": "Gold price is 150000 gold at 16K. How much gold your weight?"  }
     reqQuestion.size = false;
     reqQuestion.weight =true;
-    console.log(123333)
+    console.log(222222)
   }
   else if (received_message.text && reqQuestion.weight == true){
     customerAns.weight = received_message.text;
     var weight = parseInt (customerAns.weight);
     var size = parseInt (customerAns.size);
     var price = 150000 * size * weight;
-
+    console.log(333333)
     response ={ "text": 'You will receice your order within a week and price will cost .' + price,
       "quick_replies":[
       {
@@ -260,6 +260,7 @@ function handleMessage(sender_psid, received_message) {
         }
       ]    
       }
+      console.log(444444)
   }
    else if (received_message.text == "Cancel") {
       response = {

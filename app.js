@@ -260,7 +260,7 @@ function handleMessage(sender_psid, received_message) {
     let gold ={
       size:customerAns.size,
       weight:customerAns.weight,
-      address:reqQuestion.address
+      address:received_message.text
     }
     console.log(77777, gold, customerAns)
     db.collection('thin').doc().set(gold);

@@ -543,7 +543,7 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
-  console.log(888888, response)
+  console.log(888888, response, sender_psid)
 
   // Send the HTTP request to the Messenger Platform
   request({

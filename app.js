@@ -218,6 +218,7 @@ function handleMessage(sender_psid, received_message) {
     response = {"text": "Gold price is 150000 gold at 16K. How much gold your weight?"  }
     reqQuestion.size = false;
     reqQuestion.weight =true;
+    console.log(customerAns)
   }
   else if (received_message.text && reqQuestion.weight == true){
     customerAns.weight = received_message.text;

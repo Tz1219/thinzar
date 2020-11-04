@@ -145,8 +145,9 @@ function handleMessage(sender_psid, received_message) {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
    };
 
-       callSendAPI(sender_psid, response1);
-       callSendAPI(sender_psid, response2);
+   callSendAPI(sender_psid, response1);
+   callSendAPI(sender_psid, response2);
+   handlePostback(sender_psid, { "payload": 'getstarted' });
   }
   else if (received_message.attachments) {
     // Get the URL of the message attachment

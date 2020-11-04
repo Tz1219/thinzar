@@ -31,17 +31,12 @@ const
   admin = require('firebase-admin'),
   ServiceAccount=require("./ServiceAccount.json");
 
-
   admin.initializeApp({
-  credential: admin.credential.cert(ServiceAccount),
-  databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
-})
-
+    credential: admin.credential.cert(ServiceAccount),
+    databaseURL: "https://htun-star-goldsmithing.firebaseio.com"
+  })
 
 var db = admin.firestore();
-
-
-
 
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
@@ -52,8 +47,6 @@ app.post('/webhook', (req, res) => {
   // Parse the request body from the POST
   let body = req.body;
 
-  
-
   // Check the webhook event is from a Page subscription
   if (body.object === 'page') {
 
@@ -63,19 +56,15 @@ app.post('/webhook', (req, res) => {
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
 
-
       // Get the sender PSID
       let sender_psid = webhook_event.sender.id;
       console.log('Sender ID: ' + sender_psid);   
-
-      
 
       // Check if the event is a message or postback and
       // pass the event to the appropriate handler function
       if (webhook_event.message) {
         handleMessage(sender_psid, webhook_event.message);        
       } else if (webhook_event.postback) {
-        
         handlePostback(sender_psid, webhook_event.postback);
       }
       
@@ -88,10 +77,6 @@ app.post('/webhook', (req, res) => {
     res.sendStatus(404);
   }
 
-});
-
-app.get('/',function(req,res){
-    console.log(1);    
 });
 
 app.get('/setgsbutton',function(req,res){
@@ -192,8 +177,6 @@ function handleMessage(sender_psid, received_message) {
       }
     }
   } 
-  
-
  /* else if (received_message.text == "4 cm" || received_message.text == "6 cm" || received_message.text == "8 cm") {
       response = {
         "text":'How much gold you weight?' 
@@ -245,9 +228,7 @@ function handleMessage(sender_psid, received_message) {
     }
     reqQuestion.weight = false;
   }
-
-
- else if (received_message.text == "Order") {
+  else if (received_message.text == "Order") {
       response = {
         "text":'Thanks you! Will you come to shop!',
        "quick_replies":[
@@ -549,7 +530,8 @@ function handlePostback(sender_psid, received_postback) {
     response = { "text": "Give your size!(e.g - Show cm as you want.)", }
     reqQuestion.size = true;
   }
-      callSendAPI(sender_psid, response);}
+      callSendAPI(sender_psid, response);
+}
 
 
   
@@ -561,6 +543,7 @@ function callSendAPI(sender_psid, response) {
     },
     "message": response
   }
+  console.log(888888, response)
 
   // Send the HTTP request to the Messenger Platform
   request({

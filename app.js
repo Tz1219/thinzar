@@ -258,8 +258,8 @@ function handleMessage(sender_psid, received_message) {
   }
   else if (received_message.text && reqQuestion.address == true){
     let gold ={
-      size:reqQuestion.size,
-      weight:reqQuestion.weight,
+      size:customerAns.size,
+      weight:customerAns.weight,
       address:reqQuestion.address
     }
     console.log(77777, gold, customerAns)

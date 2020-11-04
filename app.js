@@ -252,9 +252,16 @@ function handleMessage(sender_psid, received_message) {
       }
   }
    else if (received_message.text == "Yes") {
-      response = {
-        "text":'Ok See You!No.(234), Middle Pann Soe Dann Street, Kyuak Tan Dar Township, Yangon' 
-      }
+    let gold ={
+      size:customerAns.size,
+      weight:customerAns.weight,
+      address:reqQuestion.address
+    }
+    db.collection('thin').doc().set(gold);
+    customerAns.address = reqQuestion.address;
+    response = {
+      "text":'Ok See You!No.(234), Middle Pann Soe Dann Street, Kyuak Tan Dar Township, Yangon' 
+    }
   }
   else if (received_message.text && reqQuestion.address == true){
     let gold ={

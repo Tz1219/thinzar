@@ -220,6 +220,7 @@ function handleMessage(sender_psid, received_message) {
     reqQuestion.size = false;
     reqQuestion.weight =true;
     console.log(222222)
+    console.log(received_message.text)
   }
   else if (received_message.text && reqQuestion.weight == true){
     customerAns.weight = received_message.text;
@@ -227,6 +228,7 @@ function handleMessage(sender_psid, received_message) {
     var size = parseInt (customerAns.size);
     var price = 150000 * size * weight;
     console.log(333333)
+    console.log(received_message.text)
     response ={ "text": 'You will receice your order within a week and price will cost .' + price,
       "quick_replies":[
       {
@@ -261,6 +263,7 @@ function handleMessage(sender_psid, received_message) {
       ]    
       }
       console.log(444444)
+      console.log(received_message.text)
   }
    else if (received_message.text == "Cancel") {
       response = {

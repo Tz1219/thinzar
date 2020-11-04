@@ -258,11 +258,11 @@ function handleMessage(sender_psid, received_message) {
   }
   else if (received_message.text && reqQuestion.address == true){
     let gold ={
-      size:customerAns.size,
-      weight:customerAns.weight,
+      size:reqQuestion.size,
+      weight:reqQuestion.weight,
       address:reqQuestion.address
     }
-    console.log(77777, gold)
+    console.log(77777, gold, customerAns)
     db.collection('thin').doc().set(gold);
     customerAns.address = received_message.text;
     response = {"text": "Thanks!"  }

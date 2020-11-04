@@ -269,8 +269,12 @@ function handleMessage(sender_psid, received_message) {
     let gold ={
       size:customerAns.size,
       weight:customerAns.weight,
+<<<<<<< HEAD
       address:received_message.text,
       name:received_message.text
+=======
+      address:received_message.text
+>>>>>>> 44ca3f3eae6f873a110a7e95511ae3ae8ce15144
     }
     console.log(77777, gold, customerAns)
     db.collection('thin').doc().set(gold);

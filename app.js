@@ -218,7 +218,6 @@ function handleMessage(sender_psid, received_message) {
     customerAns.size = received_message.text;
     response = {"text": "Gold price is 150000 gold at 16K. How much gold your weight?"  }
     reqQuestion.size = received_message.text;
-    reqQuestion.weight =received_message.text;
     console.log(222222)
     console.log(received_message.text)
   }

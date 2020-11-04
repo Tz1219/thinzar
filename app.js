@@ -159,6 +159,7 @@ function handleMessage(sender_psid, received_message) {
       let response2 = {
       "text":"Hi. if you have any questions or concerns, please send them a photo and you will be asked to answer in the near future. Thanks you!",
    };
+  console.log(1111111)
        callSendAPI(sender_psid, response1);
        callSendAPI(sender_psid, response2);
   }
@@ -218,7 +219,7 @@ function handleMessage(sender_psid, received_message) {
     response = {"text": "Gold price is 150000 gold at 16K. How much gold your weight?"  }
     reqQuestion.size = false;
     reqQuestion.weight =true;
-    console.log(customerAns)
+    console.log(123333)
   }
   else if (received_message.text && reqQuestion.weight == true){
     customerAns.weight = received_message.text;

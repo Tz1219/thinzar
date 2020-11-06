@@ -1,25 +1,3 @@
-
-/**
- * Copyright 2017-present, Facebook, Inc. All rights reserved.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * Messenger Platform Quick Start Tutorial
- *
- * This is the completed code for the Messenger Platform quick start tutorial
- *
- * https://developers.facebook.com/docs/messenger-platform/getting-started/quick-start/
- *
- * To run this code, you must do the following:
- *
- * 1. Deploy this code to a server running Node.js
- * 2. Run `npm install`
- * 3. Update the VERIFY_TOKEN
- * 4. Add your PAGE_ACCESS_TOKEN to your environment vars
- *
- */
-
 'use strict';
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 // Imports dependencies and set up http server
@@ -81,6 +59,9 @@ app.post('/webhook', (req, res) => {
 });
 app.get('/',function(req,res){
   res.send('your app is up and running');
+});
+app.get('/admin/order',function(req,res){
+  res.render('test.ejs');
 });
 
 app.get('/setgsbutton',function(req,res){
@@ -277,12 +258,21 @@ function handleMessage(sender_psid, received_message) {
     console.log(77777, gold, customerAns)
     db.collection('thin').doc().set(gold);
     customerAns.address = received_message.text;
-    response = {"text": "Thanks!"  }
+    response = {"text": "Please sent your name!"  }
     reqQuestion.address = false;
+    reqQuestion.name = true;
   } else if (received_message.text === 'Delivery') {
     response = {"text":'Please sent your address!',}
     reqQuestion.address = true;
   }
+  else if (received_message.text && reqQuestion.name == true){
+    let gold ={
+      size:customerAns.size,
+      weight:customerAns.weight,
+      address:received_message.text,
+      name.received_message.text
+    }
+
      
   // Send the response message
   callSendAPI(sender_psid, response);    

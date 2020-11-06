@@ -76,6 +76,11 @@ app.get('/clear',function(req,res){
     removePersistentMenu(res);
 });
 
+/*app.post('/test',function(req,res){
+    const sender_psid = req.body.sender_id;     
+    let response = {"text": "You  click delete button"};
+    callSend(sender_psid, response);
+});
 
 app.get('/admin/appointments', async function(req,res){
  
@@ -96,6 +101,12 @@ app.get('/admin/appointments', async function(req,res){
     data.push(appointment);
     
   });
+
+  console.log('DATA:', data);
+
+  res.render('appointments.ejs', {data:data});
+  
+});*/
 
 
 // Accepts GET requests at the /webhook endpoint

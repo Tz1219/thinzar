@@ -260,18 +260,10 @@ function handleMessage(sender_psid, received_message) {
     customerAns.address = received_message.text;
     response = {"text": "Please sent your name!"  }
     reqQuestion.address = false;
-    reqQuestion.name = true;
   } else if (received_message.text === 'Delivery') {
     response = {"text":'Please sent your address!',}
     reqQuestion.address = true;
   }
-  else if (received_message.text && reqQuestion.name == true){
-    let gold ={
-      size:customerAns.size,
-      weight:customerAns.weight,
-      address:received_message.text,
-      name.received_message.text
-    }
 
      
   // Send the response message

@@ -80,7 +80,7 @@ app.post('/webhook', (req, res) => {
 
 });
 app.get('/',function(req,res){
-  res.send('your app is running');
+  res.send('your app is up and running');
 });
 
 app.get('/setgsbutton',function(req,res){

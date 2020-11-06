@@ -112,6 +112,7 @@ let reqQuestion = {
   size : false,
   weight : false,
   name : false,
+
   };
 let customerAns = {};
 
@@ -264,8 +265,16 @@ function handleMessage(sender_psid, received_message) {
     response = {"text":'Please sent your name and address!',}
     reqQuestion.name = true;
     reqQuestion.address = false;
+    console.log(99999,gold,customerAns)
+    db.collection('thin').doc().set(gold);
   }
-
+else if (received_message.text && reqQuestion.name == true){
+    let gold ={
+      size:customerAns.size,
+      weight:customerAns.weight,
+      name:received_message.text,
+      address:received_message.text
+    }
      
   // Send the response message
   callSendAPI(sender_psid, response);    

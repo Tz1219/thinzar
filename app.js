@@ -27,6 +27,7 @@ const
   request = require('request'),
   express = require('express'),
   body_parser = require('body-parser'),
+  ejs = require("ejs"),
   app = express().use(body_parser.json()),
   admin = require('firebase-admin'),
   ServiceAccount=require("./ServiceAccount.json");
@@ -77,6 +78,9 @@ app.post('/webhook', (req, res) => {
     res.sendStatus(404);
   }
 
+});
+app.get('/',function(req,res){
+  res.send('your app is running');
 });
 
 app.get('/setgsbutton',function(req,res){

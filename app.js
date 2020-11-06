@@ -111,7 +111,7 @@ app.get('/webhook', (req, res) => {
 let reqQuestion = {
   size : false,
   weight : false,
-  address : false,
+  name : false,
   };
 let customerAns = {};
 
@@ -244,25 +244,26 @@ function handleMessage(sender_psid, received_message) {
       address:reqQuestion.address
     }
     db.collection('thin').doc().set(gold);
-    customerAns.address = reqQuestion.address;
+    customerAns.name = reqQuestion.name;
     response = {
-      "text":'Ok See You!No.(234), Middle Pann Soe Dann Street, Kyuak Tan Dar Township, Yangon' 
+      "text":'Please sent your name' 
     }
   }
-  else if (received_message.text && reqQuestion.address == true){
+  else if (received_message.text && reqQuestion.name == true){
     let gold ={
       size:customerAns.size,
       weight:customerAns.weight,
-      address:received_message.text
+      name:received_message.text
     }
     console.log(77777, gold, customerAns)
     db.collection('thin').doc().set(gold);
-    customerAns.address = received_message.text;
-    response = {"text": "Please sent your name!"  }
-    reqQuestion.address = false;
+    customerAns.name = received_message.text;
+    response = {"text": "Please sent your address!"  }
+    reqQuestion.name = false;
   } else if (received_message.text === 'Delivery') {
-    response = {"text":'Please sent your address!',}
-    reqQuestion.address = true;
+    response = {"text":'Please sent your name and address!',}
+    reqQuestion.name = true;
+    reqQuestion.address = false;
   }
 
      

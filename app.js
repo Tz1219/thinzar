@@ -77,6 +77,27 @@ app.get('/clear',function(req,res){
 });
 
 
+app.get('/admin/appointments', async function(req,res){
+ 
+  const appointmentsRef = db.collection('appointments');
+  const snapshot = await appointmentsRef.get();
+
+  if (snapshot.empty) {
+    res.send('no data');
+  } 
+
+  let data = []; 
+
+  snapshot.forEach(doc => {
+    let appointment = {};
+    appointment = doc.data();
+    appointment.doc_id = doc.id;
+
+    data.push(appointment);
+    
+  });
+
+
 // Accepts GET requests at the /webhook endpoint
 app.get('/webhook', (req, res) => {
   
@@ -114,6 +135,8 @@ let reqQuestion = {
   address : false,
   };
 let customerAns = {};
+
+
 
 
 function handleMessage(sender_psid, received_message) {
